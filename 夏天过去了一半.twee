@@ -1,0 +1,3682 @@
+:: StoryTitle
+夏天过去了一半
+
+
+:: StoryData
+{
+  "ifid": "A7B45D3F-921E-4E8D-B731-902584E1F999",
+  "format": "SugarCube",
+  "format-version": "2.37.3",
+  "start": "Title",
+  "tag-colors": {
+    "tbar": "blue"
+  },
+  "zoom": 1
+}
+
+
+:: 0 {"position":"1400,100","size":"100,100"}
+姓名？<<textbox "$Name" "阿德">>
+性别？<<textbox "$Name" "女">>
+编号？<<textbox "$Name" "24">>
+
+<<if $gameProgress == 0>>\
+<<else>>\
+<</if>>\
+<<linkreplace 开始游戏>>开始游戏……
+<<type 150ms skipkey "Control">><b>我要被处刑了，但不知道何时。</b>
+
+他们划开我的皮，像剥开鱼的肚膛那样，<b>揪</b>出我的骨头、再<b>插</b>进去。
+<b>揪</b>出来、再<b>插</b>进去。
+
+他们把我的一只眼珠子，像<b>拆</b>布娃娃那样，<b>抠</b>出来、再<b>安</b>回去。
+<b>抠</b>出来、再<b>安</b>回去。
+
+我的头是一颗足球，<b>踢</b>来<b>踢</b>去。
+我的手是折断的树枝。
+我的身体，是一块柔韧的橡皮。
+从我身上<b>搓</b>出的橡皮泥里，只有污垢，没有血。
+<</type>>
+
+<<type 120ms>><<link 巨大的痛苦 1>>
+<</link>><</type>>
+<</linkreplace>>
+
+
+:: 1 [bbar] {"position":"1400,225","size":"100,100"}
+<<nobr>>\
+<<if $FeatherGet == true>>
+    <<set $FeatherFound= true>>
+<</if>>
+<<if $CoinGet == true>>
+    <<set $CoinFound= true>>
+<</if>>
+<<if $HeartGet == true>>
+    <<set $HeartFound= true>>
+<</if>>
+<</nobr>>\
+<<type 150ms skipkey "Control">><b>巨大的痛苦</b>，巨大的痛苦把我碾碎。
+
+身体的疼痛、精神的折磨……这一切，这一切。
+我被悬置在巨大的痛苦中，什么都不能做。
+现在，我只想死。
+
+可我办不到，我只能等死。
+
+我的思绪在这间囚室里飘荡。试图通过仅剩的一颗眼珠、剪碎的耳朵去感受些什么——
+一些<<linkreplace 新的什么！>>新的什么！去抵抗疼痛。<</linkreplace>>
+
+然后，我捕捉到了微弱的光线、细碎的震动——
+我试图，去<<link 扩大有关它们的感受 2>><</link>>
+<</type>>
+
+
+:: 2 [bbar] {"position":"1525,225","size":"100,100"}
+<<nobr>>\
+<<if $FeatherGet == true>>
+    <<set $FeatherFound= true>>
+<</if>>
+<<if $CoinGet == true>>
+    <<set $CoinFound= true>>
+<</if>>
+<<if $HeartGet == true>>
+    <<set $HeartFound= true>>
+<</if>>
+<</nobr>>\
+<<set State.variables.BagGot to true>>\
+<<set State.variables.Exchange to true>>\
+<span class="drunk">抵抗疼痛</span>
+<<linkappend "然后，我感受到……">>
+
+<<link 浮动的光线 向上>><</link>>
+<<link 明亮的声响 向下>><</link>>
+<<link 黑黢黢的洞 向前>><</link>>
+<<link 心跳 向后>><</link>>
+<<if $FeatherFound == true>>\
+<<link 囚室外的世界 一间囚室>><</link>>
+<</if>>\
+
+<<if $FeatherFound == true && $CoinFound == true  && $HeartFound == true>>
+<<link  好了，现在…… 3>><</link>>
+<<elseif $FeatherFound == true || $CoinFound == true  || $HeartFound == true>>
+<<link  我感觉到精疲力竭…… 4>><</link>>
+<</if>>
+<</linkappend>>
+
+
+:: 3 [bbar] {"position":"1525,350","size":"100,100"}
+现在我已经没有多余的力气，向外投射注意力。
+<<type 150ms skipkey "Control">>
+硬币、羽毛、心跳……
+不知道为什么，它们让我想起了我的童年。
+
+我想起了我童年的一桩事。一个错误。
+奇怪的是，人的一生中犯了那么多错，撒了那么多谎，为什么
+在死到临头的时候，却只想起了这一件？
+
+为什么偏偏是这一件？
+
+我不想知道，也没力气知道。
+现在，我只想迫不及待地坠入有关\
+<<if $FeatherFound == true>>\  
+[[一根羽毛]]
+<<elseif $FeatherGet== false>>\  
+<<endif>>
+<<if $CoinFound == true>>  \
+[[一枚硬币]]
+<<elseif $CoinGet== false>>\  
+<<endif>>
+<<if $HeartFound == true>>\ 
+[[心脏]]
+<<elseif $HeartGet== false>>\ 
+<<endif>>\
+的巨大回忆中。
+
+<<link 好吧，我允许自己退后…… 2>>
+<</link>>
+<</type>>
+
+
+:: 4 [bbar] {"position":"1400,350","size":"100,100"}
+可是不够，还不够……只有向外注意力才能消解身心的疼痛。
+
+<<link 再次感受…… 2>>
+<</link>>
+
+
+:: OnEventChoiceComplete [widget] {"position":"0,75","size":"100,100"}
+<<widget "onEventChoiceComplete">>
+    <<if setup.currentEvent.persistent>>
+        <<if !setup.currentEvent.completedChoices.includes($eventSystem["eventChoice"].action)>>
+            <<set setup.currentEvent.completedChoices.push($eventSystem["eventChoice"].action)>>
+        <</if>>
+        <<if setup.currentEvent.completedChoices.length >= setup.currentEvent.choices.length>>
+            <<set setup.currentEvent.completed = true>>
+            <<set setup.currentEvent.active = false>>
+            <<set setup.activeLocationEvents = setup.activeLocationEvents.filter(e => e.id !== setup.currentEvent.id)>>
+        <</if>>
+    <</if>>
+<</widget>>
+
+
+:: PassageFooter {"position":"50,850","size":"100,100"}
+<<if tags().includes("bbar") && $dreamVisited>>
+<<nobr>><div id="bottombar">
+<div id="bbblock"><div id="bbtext">
+<span id="bottomtime"><<print ($hour >= 19 ? "现在是晚上 " : "现在是下午 ") + $hour + ":" + (($minute < 10 ? "0" : "") + $minute)>></span>
+<span id="bottomlocation">当前位置：<<print $CurLocation>></span>
+
+<<if !$gameStarted>>
+<<set _unread = 0>>
+<<for _i to 0; _i lt $wechatMessages.length; _i++>>
+    <<if !$wechatMessages[_i].read>>
+        <<set _unread += 1>>
+    <</if>>
+<</for>>
+<<set _unread += $xhsMessages.length>>
+<<set $unreadCount = _unread>>
+
+<div class="phone-button-container">
+<<button "手机">>
+<<script>>
+    Dialog
+    .create("iphone")
+    .wikiPassage("手机")
+    .open();
+<</script>>
+<</button>>
+<<if $unreadCount > 0>><span class="notification-badge"><<print $unreadCount>></span><</if>>
+</div>
+<</if>>
+
+<<button "口袋">>
+<<script>>
+    Dialog
+    .create("包")
+    .wikiPassage("口袋")
+    .open();
+<</script>>
+<</button>>
+<<if $FeatherFound == true>>
+<<button 羽毛>>
+<<script>>
+	Dialog.wikiPassage("羽毛的介绍")
+	.open();
+<</script>>
+<</button>>
+<<endif>>
+
+
+<<if $CoinFound == true>>
+<<button 硬币>>
+<<script>>
+	Dialog
+	.create("硬币")
+	.wikiPassage("硬币的介绍")
+	.open();
+<</script>>
+<</button>>
+<<endif>>
+
+<<if $HeartFound == true>>
+<<button 心脏>>
+<<script>>
+	Dialog
+	.create("心脏")
+	.wikiPassage("心脏的介绍")
+	.open();
+<</script>>
+<</button>>
+<<endif>>
+
+
+</div></div></div>
+<</nobr>>
+<</if>>
+
+
+:: ShowTime [widget] {"position":"650,725","size":"100,100"}
+<<widget "showTime">>
+    <<if $hour < 19>>
+        现在是下午 <<print $hour>>:<<print ($minute < 10 ? "0" : "") + $minute>>
+    <<elseif $hour == 19 && $minute == 0>>
+        现在是晚上 <<print $hour>>:<<print ($minute < 10 ? "0" : "") + $minute>>
+    <<else>>
+        <<goto "游戏结束_超时">>
+    <</if>>
+<</widget>>
+
+<<widget "formatMessageTime">><<nobr>>
+    <<set _msgHour = $args[0]>>
+    <<set _msgMinute = $args[1]>>
+    <<set _currentHour = $hour>>
+    <<set _currentMinute = $minute>>
+    <<set _msgTotalMinutes = _msgHour * 60 + _msgMinute>>
+    <<set _currentTotalMinutes = _currentHour * 60 + _currentMinute>>
+    <<set _diffMinutes = _currentTotalMinutes - _msgTotalMinutes>>
+    <<if _diffMinutes < 0>>
+        <<set _formattedTime = _msgHour + ":" + ((_msgMinute < 10) ? "0" : "") + _msgMinute>>
+    <<elseif _diffMinutes == 0>>
+        <<set _formattedTime = "刚刚">>
+    <<elseif _diffMinutes < 60>>
+        <<set _formattedTime = _diffMinutes + "分钟前">>
+    <<elseif _diffMinutes < 120>>
+        <<set _formattedTime = "1小时前">>
+    <<elseif _diffMinutes < 1440>>
+        <<set _hours = Math.floor(_diffMinutes / 60)>>
+        <<set _formattedTime = _hours + "小时前">>
+    <<else>>
+        <<set _formattedTime = _msgHour + ":" + ((_msgMinute < 10) ? "0" : "") + _msgMinute>>
+    <</if>>
+    <<print _formattedTime>>
+<</nobr>><</widget>>
+
+
+:: StoryInit {"position":"650,525","size":"100,100"}
+<<set $currentLocation = "夹层（休息室）">>
+<<set $computerOn = false>>
+<<set $gameStarted = false>>
+<<set $firstPlayGame = true>>
+<<set $items = []>>
+<<set $CellphoneInventoryGot = true>>
+<<set $CurLocation = "夹层（休息室）">>
+<<set $hour = 15>>
+<<set $minute = 0>>
+<<set $gameTestingProgress = 0>>
+<<set $rainIntensity = 0.7>>
+
+<<cacheaudio "rain" "sfx/rain.ogg">>
+<<cacheaudio "fireworks" "sfx/fireworks.mp3">>
+<<cacheaudio "notify" "sfx/notify.wav">>
+<<cacheaudio "rainSong" "bgm/写给雨天的歌.mp3">>
+<<waitforaudio>>
+
+
+<<set $lastAtWorkstation = {hour: 15, minute: 0}>>
+<<set $awayFromWorkstationThreshold = 45>>
+<<set $workstationReminderSent = false>>
+<<set $workstationReminderCount = 0>>
+<<set $workstationMonitoringEnabled = true>>
+
+
+<<set $toastNotificationsEnabled = true>>
+
+<<set $xhsHighPriority = [
+    {content:"2024年互联网大厂裁员名单更新，游戏公司也不能幸免", from:"职场观察"},
+    {content:"经济寒冬下如何保住工作？这些技能让你成为不可替代的人", from:"职场生存"},
+    {content:"失业率创新高，年轻人该如何应对就业危机？", from:"就业指导"},
+    {content:"游戏行业大洗牌：哪些公司在裁员，哪些还在招人？", from:"行业内幕"},
+    {content:"经济下行期，普通打工人的生存指南", from:"现实生活"},
+    {content:"裁员潮下的副业选择：这些兼职能帮你度过难关", from:"副业达人"},
+    {content:"房租涨价工资不涨，年轻人如何在大城市生存？", from:"生存技巧"},
+    {content:"经济不好的时候，这样存钱才能有安全感", from:"理财焦虑"},
+    {content:"互联网寒冬：从月薪2万到失业，我的真实经历", from:"职场现实"},
+    {content:"经济形势不好，要不要回老家发展？过来人的建议", from:"人生选择"}
+]>>
+
+<<set $xhsNormalPriority = [
+    {content:"独立游戏测评《谍惊蛰》：如何将人民文学奖作品改编成游戏", from:"游戏薯"},
+    {content:"游戏公司测评岗位生存指南：如何在死线中保持清醒", from:"职场经验"},
+    {content:"养猫两年的经验分享：如何用最少的钱让猫咪过得更好", from:"铲屎官日记"},
+    {content:"上海租房攻略：月薪8k如何在市区找到性价比最高的房子", from:"沪漂生存指南"},
+    {content:"母亲体检报告异常怎么办？这些保健品真的有用吗？", from:"孝心无价"},
+    {content:"毕业两年还没存款？这样理财让你快速积累第一桶金", from:"理财小白"},
+    {content:"农村出身的孩子在大城市打拼，这些心理建设很重要", from:"心理成长"},
+    {content:"猫咪突然不吃饭？可能是这5个原因，铲屎官必看", from:"宠物医生"},
+    {content:"上海美食探店：30元以下的隐藏美食，学生党打工人必收藏", from:"美食探索"},
+    {content:"年轻人的第一个奢侈品包包推荐，分期付款也要拥有", from:"精致生活"},
+    {content:"如何向远方的父母表达关爱？这份孝心清单请收下", from:"异乡游子"},
+    {content:"猫咪玩具DIY教程：废物利用，让主子开心你省钱", from:"手工达人"},
+    {content:"上海地铁通勤族的省钱攻略：每月能省几百块", from:"节约达人"},
+    {content:"毕业生医保使用指南：父母看病怎么报销？", from:"社保小助手"},
+    {content:"月薪过万的秘诀：从游戏测评到产品经理的转型之路", from:"职场进阶"},
+    {content:"乡愁治愈系：在上海也能吃到正宗家乡味道的店铺推荐", from:"味觉记忆"},
+    {content:"猫咪绝育手术全攻略：费用、注意事项一次说清", from:"负责任铲屎官"},
+    {content:"年轻人如何平衡工作与陪伴父母？远程尽孝的方法", from:"孝心科技"},
+    {content:"上海咖啡店打卡指南：20元以下的精品咖啡推荐", from:"咖啡探店"},
+    {content:"消费主义陷阱识别：这些东西真的不需要买", from:"理性消费"},
+    {content:"农村医疗报销政策解读：为父母看病省钱攻略", from:"政策解读"},
+    {content:"猫咪健康体检指南：多久检查一次？费用大概多少？", from:"宠物健康"},
+    {content:"上海年轻人的精神内耗自救指南", from:"心理调节"},
+    {content:"如何在大城市保持与家乡的联系？情感纽带很重要", from:"情感连接"},
+    {content:"二手奢侈品购买指南：用一半的价格体验精致生活", from:"精明消费"}
+]>>
+
+<<set $wechatMessages = [
+    {read:false, content:"我今天出差，你今天评测那个游戏，记住，这次必须通关！对了，那游戏按Ctrl可以加速", from:"领导", preview:"我今天出差，你今天测...", hour:10, minute:0},
+    {read:true, content:"为什么找我下午在201开会？", from:"王隼", preview:"为...", hour:8, minute:45},
+    {read:false, content:"【发行】【游戏评测组】请在下班前确认测评结果，是否代理？", from:"日程提醒", preview:"【发行】【游戏评测组】请在下班前...", hour:14, minute:45},
+    {read:true, content:"【维信转发】收到了", from:"爸爸", preview:"维信转发】银行...", hour:6, minute:45},
+    {read:true, content:"【维信转发】银行转出变动，余额879.54元", from:"银行", preview:"维信转发】银行...", hour:6, minute:45},
+]>>
+
+<<set $pendingWechatMessages = [
+    {triggerHour:15, triggerMinute:30, content:"文件服务器有点慢，稍后会修复", from:"技术支持", preview:"文件服务器..."},
+    {triggerHour:16, triggerMinute:0, content:"下午好！17:00在会议室202和HR开会，请准时参加。", from:"HR", preview:"下午好！17:00...", from:"飞鼠OA系统", preview:"【开会】【电子钥匙】会议室202电子钥匙已分发...", digitalKey:{room:"会议室202", duration:180}},
+    {triggerHour:17, triggerMinute:0, content:"今天的进度怎么样？如果遇到什么问题记得及时反馈", from:"领导", preview:"今天的进度怎么样？如果遇到什么问题..."},
+    {triggerHour:17, triggerMinute:30, content:"听说下雨了，记得带伞回家。对了，明天有个重要会议", from:"行政部", preview:"听说下雨了，记得带伞回家..."},
+    {triggerHour:18, triggerMinute:0, content:"快下班了，游戏通关了吗？", from:"领导", preview:"快下班了..."},
+    {triggerHour:18, triggerMinute:30, content:"明天公司大会，有需要提前请假", from:"飞鼠OA系统", preview:"明天..."}
+]>>
+
+<<set $xhsMessages = []>>
+<<set $unreadCount = 0>>
+
+<<set $localMsg = null>>
+
+<<set $timedEvents = [
+    {
+        id: "meeting_hr_201",
+        triggerHour: 15,
+        triggerMinute: 30,
+        location: "会议室201",
+        title: "会议",
+        description: "你靠近201会议室门，HR和某一个员工在里面讨论什么。",
+        choices: [
+            {text: "敲门参加会议", action: "join_other_meeting", consequence: "王隼冲上来，不说话，合上了会议室门"},
+            {text: "在门外待着一会儿", action: "eavesdrop_201", consequence: "你感觉到气氛有点不太对劲"},
+            {text: "安静离开", action: "leave_quietly", consequence: "也不会怎么样"}
+        ],
+        active: false,
+        triggered: false,
+        duration: 60,
+        importance: "normal"
+    },
+    {
+        id: "server_issue",
+        triggerHour: 15,
+        triggerMinute: 45,
+        location: "工位",
+        title: "服务器故障",
+        description: "你回到工位时发现电脑屏幕显示异常，似乎评测游戏文件服务器出现了问题。技术同事正在你附近的工位上焦急地发飞鼠。",
+        choices: [
+            {text: "询问技术同事发生了什么", action: "ask_colleague", consequence: "获得详细信息"},
+            {text: "尝试重新连接服务器", action: "retry_connection", consequence: "可能解决问题"},
+            {text: "等待问题自动解决", action: "wait", consequence: "浪费时间"}
+        ],
+        active: false,
+        triggered: false,
+        duration: 30,
+        importance: "normal"
+    },
+    {
+        id: "meeting_hr_202",
+        triggerHour: 17,
+        triggerMinute: 0,
+        location: "会议室202",
+        title: "会议",
+        description: "HR已经到了会议室。",
+        choices: [
+            {text: "开门进去", action: "open_door_202", consequence: "……"},
+        ],
+        active: false,
+        triggered: false,
+        duration: 120,
+        importance: "high"
+    },
+    {
+        id: "coffee_break",
+        triggerHour: 15,
+        triggerMinute: 45,
+        location: "公共吧台",
+        title: "下午茶",
+        description: "几位同事正在吧台边享受下午茶，聊最近小红书流行的科幻片《永恒的终结》。",
+        choices: [
+            {text: "加入下午茶聊天", action: "join_break", consequence: "放松心情，获得同事好感"},
+            {text: "提起咖啡机未清洗", action: "quick_coffee", consequence: "稍微休息"},
+            {text: "专心工作，不参与", action: "focus_work", consequence: "保持工作专注"}
+        ],
+        active: false,
+        triggered: false,
+        duration: 40,
+        importance: "low"
+    },
+    {
+        id: "urgent_bug",
+        triggerHour: 16,
+        triggerMinute: 30,
+        location: "会议室101",
+        title: "紧急bug讨论",
+        description: "会议室101里，同事们正在讨论一个严重问题。",
+        choices: [
+            {text: "主动报告你发现的相关问题", action: "report_bugs", consequence: "提供关键信息，获得认可"},
+            {text: "等待被叫到再进入", action: "wait_call", consequence: "保持谨慎"},
+            {text: "先回去整理详细报告", action: "prepare_report", consequence: "准备更充分"},
+            {text: "在门外待着了解情况", action: "eavesdrop_outside", consequence: "获得信息但有风险"}
+        ],
+        active: false,
+        triggered: false,
+        duration: 45,
+        importance: "low"
+    },
+    {
+        id: "delivery_arrival",
+        triggerHour: 17,
+        triggerMinute: 15,
+        location: "一楼大厅",
+        title: "快递到达",
+        description: "一位快递员正站在前台，手里拿着几个包裹。前台小姐姐还没回来，快递员看起来有些着急。",
+        choices: [
+            {text: "帮忙接收快递", action: "help_delivery", consequence: "帮助同事，获得感谢"},
+            {text: "告诉快递员前台的情况", action: "explain_situation", consequence: "提供信息"},
+            {text: "继续自己的事情", action: "ignore", consequence: "不介入"}
+        ],
+        active: false,
+        triggered: false,
+        duration: 15,
+        importance: "low"
+    },
+    {
+        id: "rain_intensifies",
+        triggerHour: 17,
+        triggerMinute: 30,
+        location: "夹层（休息室）",
+        title: "雨势加剧",
+        description: "窗外的雨越下越大，你在夹层（休息室）里，隐约看到了墙面渗水的反光。",
+        choices: [
+            {text: "检查漏水", action: "check_leak", consequence: "发现潜在问题"},
+            {text: "享受雨声", action: "enjoy_rain", consequence: "恢复精神"},
+        ],
+        active: false,
+        triggered: false,
+        duration: 60,
+        importance: "normal"
+    },
+    {
+        id: "pigeon_encounter",
+        triggerHour: 15,
+        triggerMinute: 15,
+        location: "天台",
+        title: "天台上的鹦鹉",
+        description: "你来到天台，有只绿鹦鹉在栏杆上跳跃。它似乎不怕人，偶尔停顿，再接着跳。",
+        choices: [
+            {text: "静静观察鹦鹉的行为", action: "observe_pigeon", consequence: "……"},
+            {text: "尝试接近鹦鹉", action: "approach_pigeon", consequence: "……"},
+        ],
+        active: false,
+        triggered: false,
+        duration: 360,
+        importance: "high",
+        persistent: true,
+        completed: false,
+        completedChoices: []
+    },
+    {
+        id: "office_closing",
+        triggerHour: 19,
+        triggerMinute: 0,
+        location: "global",
+        title: "下班时间到了",
+        description: "时钟指向7点整，办公室的灯光自动熄灭，只剩下安全出口的指示灯还在闪烁。整个公司陷入了寂静，所有同事都已经离开。电子门锁系统发出'嘀嘀'声后完全关闭，即使有电子钥匙也无法再打开任何会议室。",
+        choices: [
+            {text: "离开公司", action: "leave_office", consequence: "结束今天的工作"},
+            {text: "在办公室里再待一会儿", action: "stay_longer", consequence: "享受安静的时光"}
+        ],
+        active: false,
+        triggered: false,
+        duration: 60,
+        importance: "high",
+        isGlobal: true
+    },
+    {
+        id: "cleaning_lady",
+        triggerHour: 16,
+        triggerMinute: 30,
+        location: "公共吧台",
+        title: "物业阿姨",
+        description: "在公共吧台处，你看到你熟悉的保洁阿姨，她的年纪和你奶奶去世前相仿，此时她正在擦拭吧台桌，看你来了，操起你家乡口音，又说起家乡的过去。",
+        choices: [
+            {text: "询问她今天怎么过的", action: "ask_cleaning_lady", consequence: "……"},
+            {text: "帮她一起打扫", action: "help_cleaning", consequence: "……"},
+            {text: "和她聊聊家常", action: "chat_cleaning_lady", consequence: "……"},
+            {text: "给她硬币", action: "coin_cleaning_lady", consequence: "……"}
+        ],
+        active: false,
+        triggered: false,
+        duration: 360,
+        importance: "high",
+        persistent: true,
+        completed: false,
+        completedChoices: []
+    }
+]>>
+
+<<set $eventSystem = {}>>
+<<set setup.activeLocationEvents = []>>
+<<set setup.currentEvent = null>>
+<<set $eventSystem["eventChoice"] = null>>
+
+<<set $globalEventTriggered = false>>
+
+
+<<set $meetingRoomLocks = {
+    "会议室101": false,
+    "会议室102": true,
+    "会议室201": true,
+    "会议室202": true
+}>>
+
+
+<<set $digitalKeys = []>>
+<<set $dreamVisited = false>>
+<<set $gameProgress = 0>>
+
+
+<<set $BagGot = false>>
+<<set $Exchange = false>>
+
+/* 道具在游戏外的状态：是否获取 */
+<<set $FeatherGet=false>>
+<<set $CoinGet=false>>
+<<set $HeartGet= false>>
+
+/* 道具在游戏内的状态：是否找到 */
+<<set $FeatherFound= false>>
+<<set $CoinFound= false>>
+<<set $HeartFound= false>>
+
+
+
+<<set $Button1 = "物品栏1">>
+<<set $Button2 = "物品栏2">>
+<<set $Button3 = "物品栏3">>
+
+/* 游戏内的个人档案 */
+<<set $Name=" ">>
+<<set $Gender=" ">>
+<<set $Age=" ">>
+<<set $ID=" ">>
+<<set $Sin=" ">>
+<<set $BirdName=" ">>
+<<set $Money=10>>
+
+
+/* 总共扇巴掌的次数 */
+<<set $SlapCount = 0>>
+
+<<set $ExitCount =true>>
+<<set $StartCount = false>>
+
+
+:: Title {"position":"650,125","size":"100,100"}
+<div style="text-align: center;"><img src="images/title.jpg" width=847 ></div>
+<div style="text-align: center;"><<link 开始游戏 开始>><</link>></div>
+
+
+:: 一枚硬币 {"position":"1625,550","size":"100,100"}
+<<type 150ms skipkey "Control">>\
+1元硬币能买到什么？
+十包辣条，两支小布丁，半趟公交车，还有一只小鸟。
+
+一只小鸟当然<<linkreplace 不止1元钱。>>不止1元钱。实际上，它总共花了<<textbox "$Money" "11">>元。<</linkreplace>>
+
+小鸟是在放学路过的老爷爷那儿买的，在看到它的第一眼我就挪不开步。
+<b>——你瞧，它圆溜溜的眼珠子，在朝我唱歌！</b>
+我押着仅剩的一元硬币，和老爷爷说，第二天去买。
+
+<b><<textbox "$BirdName" "钵钵鸡">>，明天我就能接你<<link 回家啦！ 审判-硬币>><</link>></b>
+<</type>>
+
+
+:: 一根羽毛 {"position":"1450,550","size":"100,100"}
+<<type 150ms skipkey "Control">>\
+<b>一根羽毛。</b>
+那天，也是这样一根白色羽毛，徐徐落到我的脚尖。
+
+轻轻的，风一吹就散。
+
+放学路上的人很多，但只有我看到了它。
+我使劲盯着它：
+它很，白。嗯。除此之外，还很，完整。
+它比我想象中还要，光滑。
+羽毛沾不上水。泪水溅上去的时候，只会“啪”一声躲开。
+
+我想象着自己的泪滴是一枚湿漉漉的弓箭，射向羽毛。
+一次，两次，三次。
+没有一次成功。
+
+我继续，没有气馁。
+一次，两次，三次。
+直到弓箭耗尽，
+也还是没有成功。
+
+卖鸟的爷爷打断了我的思绪，他问我，要不要把这只小鸟带回家？
+我说好。
+那时，我小学五年级。我掏出了<<textbox "$Money" "11">>元钱，把它接回了家。
+
+我给它取名叫做<<textbox "$BirdName" "钵钵鸡">>。
+
+可是为什么，
+这根羽毛上，有一滴血红色的墨点？
+
+我死盯着那个<<link 红点。 审判-羽毛>><</link>>
+<</type>>
+
+
+:: 一楼大厅 [bbar] {"position":"1850,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "一楼大厅">><<passTime 5>><<script>>
+try {
+    if (window.triggerLocationEvent && window.triggerLocationEvent("一楼大厅")) {
+        setTimeout(function() {
+            Engine.play("触发事件");
+        }, 100);
+    }
+} catch (error) {
+    console.error("Error triggering location event:", error);
+}
+<</script>><</nobr>><<if $hour >= 19>>你来到一楼，几台显示器还亮着，除此之外，安全出口的指示灯闪着绿光。
+
+可以前往：
+[[前台区域]]
+[[自己的工位->工位]]
+[[会议室101]]
+[[会议室102]]
+[[离开公司]]
+[[回到夹层（休息室）->夹层（休息室）]]
+<<else>>\
+<<type 100ms skipkey "Control">>你来到一楼，这里是公司的主要工作区，伴随着键盘敲击声，成排的屏幕在闪烁。工作区与前台相连，此时前台座位空着，桌上放着一张便签。<</type>>
+
+<<timed 3s skipkey "Control">>\
+可以前往：
+[[前台区域]]
+[[你的工位->工位]]
+[[会议室101]]
+[[会议室102]]
+[[离开公司]]
+[[回到夹层（休息室）->夹层（休息室）]]<</timed>>\
+<</if>>\
+
+
+:: 一间囚室 [bbar] {"position":"1200,225","size":"100,100"}
+我有了羽毛，目光飞了出去，我看到了另一间囚室，跟这里一模一样。
+
+<<if $CoinFound == false>>
+有一个人倒在地上，一动不动，ta面前有台显示器，显示器的画面闪烁不定，<<linkreplace 好像是…… >>\一个硬币！
+<<set $items.push("硬币")>>\
+<<script>>window.showToast("夏天过去了一半", "得到道具“硬币”", 5000, "success");<</script>>\
+<<set $CoinGet=true>>\
+<<set $CoinFound=true>>\
+<<set $gameProgress += 1>>\
+我伸手从屏幕里拿出了硬币。
+<</linkreplace>>\
+<<else>>\
+有一个人倒在地上，一动不动，我拿到<strong>硬币</strong>了。
+<<endif>>
+
+/* 接下来引导玩家回现实，把硬币用掉，并找到心脏 */
+<<link 找找其他的 2>>
+<</link>>
+
+
+:: 二楼 [bbar] {"position":"2600,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "二楼">><<passTime 5>><</nobr>><<if $hour >= 19>>你来到二楼，整个楼层都沉浸在黑暗中。休闲现代的装修在昏暗中显得有些诡异。走廊尽头的公共吧台空无一人，只有微弱的应急照明还在工作。整个楼层静得可怕，只能听到自己的脚步声在走廊中回响。
+
+可以前往：
+[[公共吧台->吧台]]
+[[会议室201]]
+[[会议室202]]
+[[天台]]
+[[回到夹层（休息室）->夹层（休息室）]]
+<<else>>你来到二楼，这里是公司的工作休闲两用区，你扫了一眼，大家依然很忙碌，你分辨不出谁是谁。二楼中央有一个开放式的公共吧台，上面有时候会放一些零食，二楼尽头有扇小门，直通天台。
+
+可以前往：
+[[公共吧台->吧台]]
+[[会议室201]]
+[[会议室202]]
+[[天台]]
+[[回到夹层（休息室）->夹层（休息室）]]
+<</if>>
+
+
+:: 会议室101 [bbar] {"position":"3050,850","size":"100,100"}
+<<if $meetingRoomLocks["会议室101"]>>\
+    <<nobr>><<set $CurLocation = "一楼大厅">><<passTime 2>><</nobr>>你走到会议室101门前，发现门是锁着的。
+    <<if $hour >= 19>>\
+        门上的电子门锁显示屏显示'系统已关闭 - 19:00后禁止进入'，所有指示灯都已熄灭。即使你有电子钥匙，系统也不会响应。
+        [[返回大厅->一楼大厅]]
+    <<else>>\
+        门上有一个电子门锁显示屏，显示'需要电子钥匙'。
+        <<nobr>><<script>>
+            const hasKey = window.hasValidDigitalKey && window.hasValidDigitalKey("会议室101");
+            const keyInfo = window.getDigitalKeyInfo && window.getDigitalKeyInfo("会议室101");
+            State.temporary.hasDigitalKey = hasKey;
+            State.temporary.keyInfo = keyInfo;
+            
+            const activeEvents = setup.activeLocationEvents || [];
+            const roomEvent = activeEvents.find(event => 
+                event && event.location === "会议室101" && event.active && !event.triggered
+            );
+            State.temporary.hasActiveEvent = !!roomEvent;
+            State.temporary.roomEvent = roomEvent;
+        <</script>><</nobr>>
+        <<if _hasDigitalKey>>\
+            你的手机显示有会议室101的有效电子钥匙。
+            <<if _keyInfo.valid>>\
+                剩余时间：<<print _keyInfo.remainingMinutes>>分钟（到<<print _keyInfo.expireHour>>:<<print (_keyInfo.expireMinute < 10 ? "0" : "") + _keyInfo.expireMinute>>过期）
+            <</if>>\
+            [[用电子钥匙开门->会议室101解锁]]
+            [[返回大厅->一楼大厅]]
+        <<else>>\
+            你的手机没有会议室101的有效电子钥匙，无法进入。
+            <<if _keyInfo && _keyInfo.reason>>\
+                <<print _keyInfo.reason>>
+            <</if>>\
+            <<if _hasActiveEvent>>\
+                <<if _roomEvent>>\
+                    你听到门内传来<<print _roomEvent.title.replace("正在进行", "")>>的声音。
+                <</if>>\
+                [[在门外待着->会议室101门外偷听]]
+            <</if>>
+            [[返回大厅->一楼大厅]]
+        <</if>>\
+    <</if>>\
+<<else>>\
+    <<nobr>><<set $CurLocation = "会议室101">><<passTime 5>><<script>>
+    try {
+        if (window.triggerLocationEvent && window.triggerLocationEvent("会议室101")) {
+            setTimeout(function() {
+                Engine.play("触发事件");
+            }, 100);
+        }
+    } catch (error) {
+        console.error("Error triggering location event:", error);
+    }
+    <</script>><</nobr>>会议室101空无一人，投影仪的指示灯闪烁着待机的绿光。
+
+    [[锁上门->会议室101上锁]]
+    [[返回大厅->一楼大厅]]
+<</if>>\
+
+
+:: 会议室101上锁 [bbar] {"position":"4000,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "会议室101">><<passTime 3>><<set $meetingRoomLocks["会议室101"] = true>><</nobr>>你从里面激活了会议室101的电子门锁。门锁显示屏显示红色"已锁定"状态，并提示"需要电子钥匙"。
+
+现在这个会议室已经被电子门锁锁定，只有拥有有效电子钥匙的人才能进入。
+
+[[返回大厅->一楼大厅]]
+
+
+:: 会议室101继续偷听 [bbar] {"position":"5650,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "一楼大厅">><<passTime 8>><</nobr>>你决定继续偷听，希望能获得更多信息。
+
+<<if Math.random() > 0.6>>
+    突然，会议室的门被打开了！领导走了出来，正好看到你贴在门边。
+    
+    "咦？你在这里做什么？"领导有些疑惑地看着你。
+    
+    你有些尴尬地解释："我...我是想知道会议什么时候结束，有些工作上的问题想请教。"
+    
+    领导点点头："原来如此。正好，我们刚才在讨论一个bug，你作为测评员可能有相关的信息。要不要进来一起讨论？"
+    
+    <em>虽然被发现了，但意外地获得了参与会议的机会！</em>
+    
+    [[接受邀请进入会议室->会议室101解锁]]
+    [[礼貌拒绝，说稍后再谈->一楼大厅]]
+<<else>>
+    你继续小心地偷听，这次听到了更多有用的信息。
+    
+    <<if _roomEvent && _roomEvent.id == "urgent_bug">>
+        你听到有人说："测试环境和生产环境的配置可能有差异，这可能是导致bug的原因之一。"
+        
+        "建议我们重新部署一个干净的测试环境，然后让测评组重新测试。"
+        
+        "好主意，我马上安排技术组准备新的测试环境。"
+        
+        <em>你获得了关于测试环境问题的重要信息，这对你的后续工作很有价值。</em>
+        <<set $gameTestingProgress += 8>>
+    <<else>>
+        你听到一些关于项目进度和工作安排的讨论，虽然不是特别重要，但让你对团队的工作状态有了更好的了解。
+        
+        <em>你对团队协作有了更深的理解。</em>
+        <<set $gameTestingProgress += 5>>
+    <</if>>
+    
+    感觉已经听得差不多了，你悄悄地离开了门边。
+    
+    [[悄悄离开->一楼大厅]]
+<</if>>
+
+
+:: 会议室101解锁 [bbar] {"position":"4150,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "会议室101">><<passTime 3>><<set $meetingRoomLocks["会议室101"] = false>><</nobr>>你用手机上的电子钥匙打开了会议室101的门。电子门锁显示屏闪烁绿光，发出"嘀"的一声，门锁自动打开。
+
+会议室101空无一人，投影仪的指示灯闪烁着待机的绿光。
+
+<<nobr>><<script>>
+try {
+    if (window.triggerLocationEvent && window.triggerLocationEvent("会议室101")) {
+        setTimeout(function() {
+            Engine.play("触发事件");
+        }, 100);
+    }
+} catch (error) {
+    console.error("Error triggering location event:", error);
+}
+<</script>><</nobr>>
+
+[[锁上门->会议室101上锁]]
+[[返回大厅->一楼大厅]]
+
+
+:: 会议室101门外偷听 [bbar] {"position":"5500,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "一楼大厅">><<passTime 10>><<script>>
+    
+    const activeEvents = setup.activeLocationEvents || [];
+    const roomEvent = activeEvents.find(event => 
+        event && event.location === "会议室101" && event.active && !event.triggered
+    );
+    State.temporary.roomEvent = roomEvent;
+<</script>><</nobr>>你悄悄地贴近会议室101的门，仔细倾听里面的声音。
+
+<<if _roomEvent>>
+    <<switch _roomEvent.id>>
+        <<case "urgent_bug">>
+            你听到领导的声音："这个bug确实很严重，会影响到整个游戏的核心机制。"
+            
+            开发组的声音："我们已经定位到问题所在，但修复需要重构一部分代码。"
+            
+            另一个声音："测评组那边有没有更详细的复现步骤？这对我们修复很重要。"
+            
+            领导："我等会儿去找测评组的同事了解情况。这个问题必须在今天解决。"
+            
+            <em>通过偷听，你了解到了bug的严重性和修复进度，这对你的测评工作很有帮助。</em>
+            <<set $gameTestingProgress += 10>>
+        <<default>>
+            你听到里面传来模糊的讨论声，但无法清楚地听出具体内容。偶尔能听到几个关键词，但不足以了解完整的情况。
+            
+            <em>虽然没有获得太多有用信息，但至少知道会议正在进行。</em>
+            <<set $gameTestingProgress += 3>>
+    <</switch>>
+<<else>>
+    你贴近门边仔细倾听，但里面似乎很安静，可能会议已经结束了，或者隔音效果太好。
+<</if>>
+
+你觉得继续偷听可能会被发现，还是离开比较好。
+
+[[继续偷听一会儿->会议室101继续偷听]]
+[[悄悄离开->一楼大厅]]
+
+
+:: 会议室102 [bbar] {"position":"3200,850","size":"100,100"}
+<<if $meetingRoomLocks["会议室102"]>>
+    <<nobr>><<set $CurLocation = "一楼大厅">><<passTime 2>><</nobr>>你走到会议室102门前，发现门是锁着的。
+    
+    <<if $hour >= 19>>
+        门上的电子门锁显示屏显示'系统已关闭 - 19:00后禁止进入'，所有指示灯都已熄灭。即使你有电子钥匙，系统也不会响应。
+        
+        [[返回大厅->一楼大厅]]
+    <<else>>
+        门上有一个电子门锁显示屏，显示'需要电子钥匙'。
+    
+    <<nobr>><<script>>
+        const hasKey = window.hasValidDigitalKey && window.hasValidDigitalKey("会议室102");
+        const keyInfo = window.getDigitalKeyInfo && window.getDigitalKeyInfo("会议室102");
+        State.temporary.hasDigitalKey = hasKey;
+        State.temporary.keyInfo = keyInfo;
+
+        const activeEvents = setup.activeLocationEvents || [];
+        const roomEvent = activeEvents.find(event => 
+            event && event.location === "会议室102" && event.active && !event.triggered
+        );
+        State.temporary.hasActiveEvent = !!roomEvent;
+        State.temporary.roomEvent = roomEvent;
+    <</script>><</nobr>>
+    
+    <<if _hasDigitalKey>>
+        你的手机显示有会议室102的有效电子钥匙。
+        <<if _keyInfo.valid>>
+            剩余时间：<<print _keyInfo.remainingMinutes>>分钟（到<<print _keyInfo.expireHour>>:<<print (_keyInfo.expireMinute < 10 ? "0" : "") + _keyInfo.expireMinute>>过期）
+        <</if>>
+        [[用电子钥匙开门->会议室102解锁]]
+        <<if _hasActiveEvent>>
+            [[在门外待着->会议室102门外偷听]]
+        <</if>>
+        [[返回大厅->一楼大厅]]
+            <<else>>
+            你的手机没有会议室102的有效电子钥匙，无法进入。
+            <<if _keyInfo && _keyInfo.reason>>
+                <<print _keyInfo.reason>>
+            <</if>>
+            <<if _hasActiveEvent>>
+                <<if _roomEvent>>
+                    你听到门内传来<<print _roomEvent.title.replace("正在进行", "")>>的声音。
+                <</if>>
+                [[在门外待着->会议室102门外偷听]]
+            <</if>>
+            [[返回大厅->一楼大厅]]
+        <</if>>
+    <</if>>
+<<else>>
+    <<nobr>><<set $CurLocation = "会议室102">><<passTime 5>><<script>>
+    try {
+        if (window.triggerLocationEvent && window.triggerLocationEvent("会议室102")) {
+            setTimeout(function() {
+                Engine.play("触发事件");
+            }, 100);
+        }
+    } catch (error) {
+        console.error("Error triggering location event:", error);
+    }
+    <</script>><</nobr>>会议室102里摆放着几把办公椅，白板上还留着上次会议的笔记。
+
+    [[锁上门->会议室102上锁]]
+    [[返回大厅->一楼大厅]]
+<</if>>
+
+
+:: 会议室102上锁 [bbar] {"position":"4300,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "会议室102">><<passTime 3>><<set $meetingRoomLocks["会议室102"] = true>><</nobr>>你从里面激活了会议室102的电子门锁。门锁显示屏显示红色"已锁定"状态，并提示"需要电子钥匙"。
+
+现在这个会议室已经被电子门锁锁定，只有拥有有效电子钥匙的人才能进入。
+
+[[返回大厅->一楼大厅]]
+
+
+:: 会议室102继续偷听 [bbar] {"position":"5950,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "一楼大厅">><<passTime 6>><</nobr>>你决定继续偷听一会儿。
+
+<<if Math.random() > 0.7>>
+    会议室的门突然打开，技术同事走了出来，差点撞到你。
+    
+    [[询问项目进度->询问技术同事项目进度]]
+    [[说没什么重要的事->一楼大厅]]
+<<else>>
+    你听到会议似乎已经接近尾声。
+    
+    "好的，今天的站立会议就到这里。大家有什么问题随时沟通。"
+    
+    "散会！"
+    
+    <em>会议结束了，你及时了解了团队的工作状态。</em>
+    
+    [[悄悄离开->一楼大厅]]
+<</if>>
+
+
+:: 会议室102解锁 [bbar] {"position":"4450,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "会议室102">><<passTime 3>><<set $meetingRoomLocks["会议室102"] = false>><</nobr>>你用手机上的电子钥匙打开了会议室102的门。电子门锁显示屏闪烁绿光，发出"嘀"的一声，门锁自动打开。
+
+会议室102里摆放着几把办公椅，白板上还留着上次会议的笔记。
+
+<<nobr>><<script>>
+try {
+    if (window.triggerLocationEvent && window.triggerLocationEvent("会议室102")) {
+        setTimeout(function() {
+            Engine.play("触发事件");
+        }, 100);
+    }
+} catch (error) {
+    console.error("Error triggering location event:", error);
+}
+<</script>><</nobr>>
+
+[[锁上门->会议室102上锁]]
+[[返回大厅->一楼大厅]]
+
+
+:: 会议室102门外偷听 [bbar] {"position":"5800,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "一楼大厅">><<passTime 10>><<script>>
+    
+    const activeEvents = setup.activeLocationEvents || [];
+    const roomEvent = activeEvents.find(event => 
+        event && event.location === "会议室102" && event.active && !event.triggered
+    );
+    State.temporary.roomEvent = roomEvent;
+<</script>><</nobr>>你悄悄地贴近会议室102的门，仔细倾听里面的声音。
+
+<<if _roomEvent>>
+    你听到里面传来简短而高效的讨论声，这似乎是每日站立会议。
+    
+    "昨天的任务完成情况如何？"
+    
+    "我这边的美术资源已经完成，今天会提交给程序组。"
+    
+    "服务器那边还有一些小问题，预计今天下午能解决。"
+    
+    "测评组的反馈很及时，帮我们发现了几个重要问题。"
+    
+    <em>通过偷听站立会议，你了解了各组的工作进度，这有助于你更好地安排自己的测评工作。</em>
+    <<set $gameTestingProgress += 6>>
+<<else>>
+    你贴近门边仔细倾听，但里面似乎很安静，可能会议已经结束了。
+<</if>>
+
+[[继续偷听一会儿->会议室102继续偷听]]
+[[悄悄离开->一楼大厅]]
+
+
+:: 会议室201 [bbar] {"position":"3350,850","size":"100,100"}
+<<if $meetingRoomLocks["会议室201"]>>
+    <<nobr>><<set $CurLocation = "二楼">><<passTime 2>><</nobr>>你走到会议室201门前，发现门是锁着的。
+    
+    <<if $hour >= 19>>
+        门上的电子门锁显示屏显示'系统已关闭 - 19:00后禁止进入'，所有指示灯都已熄灭。即使你有电子钥匙，系统也不会响应。
+        
+        [[返回二楼->二楼]]
+    <<else>>
+        门上有一个电子门锁显示屏，显示'需要电子钥匙'。
+    
+    <<nobr>><<script>>
+        console.log("201 roomEvent");
+        const hasKey = window.hasValidDigitalKey && window.hasValidDigitalKey("会议室201");
+        const keyInfo = window.getDigitalKeyInfo && window.getDigitalKeyInfo("会议室201");
+        State.temporary.hasDigitalKey = hasKey;
+        State.temporary.keyInfo = keyInfo;
+        
+        const activeEvents = setup.activeLocationEvents || [];
+        const roomEvent = activeEvents.find(event => 
+            event && event.location === "会议室201" && event.active && !event.triggered
+        );
+        State.temporary.hasActiveEvent = !!roomEvent;
+        State.temporary.roomEvent = roomEvent;
+    <</script>><</nobr>>
+    
+    <<if _hasDigitalKey>>
+        你的手机显示有会议室201的有效电子钥匙。
+        <<if _keyInfo.valid>>
+            剩余时间：<<print _keyInfo.remainingMinutes>>分钟（到<<print _keyInfo.expireHour>>:<<print (_keyInfo.expireMinute < 10 ? "0" : "") + _keyInfo.expireMinute>>过期）
+        <</if>>
+        [[用电子钥匙开门->会议室201解锁]]
+        <<if _hasActiveEvent>>\
+            [[在门外待着->会议室201门外偷听]]
+        <</if>>\
+        [[返回二楼->二楼]]
+            <<else>>
+            你的手机没有会议室201的有效电子钥匙，无法进入。
+            <<if _keyInfo && _keyInfo.reason>>
+                <<print _keyInfo.reason>>
+            <</if>>
+            <<if _hasActiveEvent>>
+                <<if _roomEvent>>
+                    你听到门内传来<<print _roomEvent.title.replace("正在进行", "")>>的声音。
+                <</if>>
+                [[在门外待着->会议室201门外偷听]]
+            <</if>>
+            [[返回二楼->二楼]]
+        <</if>>
+    <</if>>
+<<else>>
+    <<nobr>><<set $CurLocation = "会议室201">><<passTime 5>><<script>>
+    try {
+        if (window.triggerLocationEvent && window.triggerLocationEvent("会议室201")) {
+            setTimeout(function() {
+                Engine.play("触发事件");
+            }, 100);
+        }
+    } catch (error) {
+        console.error("Error triggering location event:", error);
+    }
+    <</script>><</nobr>>会议室201的玻璃墙上贴满了便利贴，记录着各种项目的进度。
+
+    [[锁上门->会议室201上锁]]
+    [[返回二楼->二楼]]
+<</if>>
+
+
+:: 会议室201上锁 [bbar] {"position":"4600,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "会议室201">><<passTime 3>><<set $meetingRoomLocks["会议室201"] = true>><</nobr>>你从里面激活了会议室201的电子门锁。门锁显示屏显示红色"已锁定"状态，并提示"需要电子钥匙"。
+
+现在这个会议室已经被电子门锁锁定，只有拥有有效电子钥匙的人才能进入。
+
+[[返回二楼->二楼]]
+
+
+:: 会议室201继续偷听 [bbar] {"position":"6250,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "二楼">><<passTime 8>><</nobr>>你决定继续待着。
+
+<<if Math.random() > 0.5>>\
+    突然，你听到有人起身。你连忙后退几步。
+    
+    陪你买包子的同事走了出来，HR在里面敲键盘。
+    
+    他说，雨越来越大了，回到了自己的工位。
+<<else>>\
+    你听到了里面很沉默，王隼偶尔冒出他的口头禅。
+
+    为什么？
+<</if>>\
+     [[去其他地方->二楼]]
+
+
+:: 会议室201解锁 [bbar] {"position":"4750,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "会议室201">><<passTime 3>><<set $meetingRoomLocks["会议室201"] = false>><</nobr>>你用手机上的电子钥匙打开了会议室201的门。电子门锁显示屏闪烁绿光，发出"嘀"的一声，门锁自动打开。
+
+会议室201的玻璃墙上贴满了便利贴，记录着各种项目的进度。
+
+<<nobr>><<script>>
+try {
+    if (window.triggerLocationEvent && window.triggerLocationEvent("会议室201")) {
+        setTimeout(function() {
+            Engine.play("触发事件");
+        }, 100);
+    }
+} catch (error) {
+    console.error("Error triggering location event:", error);
+}
+<</script>><</nobr>>
+
+    [[锁上门->会议室201上锁]]
+[[返回二楼->二楼]]
+
+
+:: 会议室201门外偷听 [bbar] {"position":"6100,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "二楼">><<passTime 10>><<script>>
+    
+    const activeEvents = setup.activeLocationEvents || [];
+    const roomEvent = activeEvents.find(event => 
+        event && event.location === "会议室201" && event.active && !event.triggered
+    );
+    State.temporary.roomEvent = roomEvent;
+<</script>><</nobr>>你往201的门靠了靠。
+
+<<if _roomEvent>>
+    <<switch _roomEvent.id>>
+        <<case "meeting_hr_201">>
+            你在门口待了一会，里面好像是HR和另一个同事王隼，你们总在同一家店买包子。
+        <<case "meeting_progress">>
+            你听到领导的声音："目前整体进度还算正常，但有几个关键节点需要注意。"
+            
+            张哥的声音："策划这边的文档已经更新，新的游戏机制设计已经完成。"
+            
+            技术同事："技术实现上没有太大问题，主要是需要测评组的及时反馈。"
+            
+            小雨："美术资源的制作进度良好，预计下周能完成所有素材。"
+            
+            领导："测评组那边怎么样？我们需要更详细的测试报告。"
+            
+            <em>通过偷听项目进度会议，你了解了各组的工作状态和对测评组的期望。</em>
+            
+        <<default>>
+            你听到里面传来讨论声，但由于门的隔音效果，无法清楚地听出具体内容。
+            
+            <em>虽然没有获得详细信息，但知道会议正在进行。</em>
+    <</switch>>
+<<else>>
+    你贴近门边仔细倾听，但里面似乎很安静，可能会议还没开始或者已经结束了。
+<</if>>
+
+[[继续待一会儿->会议室201继续偷听]]
+[[悄悄离开->二楼]]
+
+
+:: 会议室202 [bbar] {"position":"3500,850","size":"100,100"}
+<<if $meetingRoomLocks["会议室202"]>>
+    <<nobr>><<set $CurLocation = "二楼">><<passTime 2>><</nobr>>你走到会议室202门前，发现门是锁着的。
+    
+    <<if $hour >= 19>>
+        门上的电子门锁显示屏显示'系统已关闭 - 19:00后禁止进入'，所有指示灯都已熄灭。即使你有电子钥匙，系统也不会响应。
+        
+        [[返回二楼->二楼]]
+    <<else>>
+        门上有一个电子门锁显示屏，显示'需要电子钥匙'。
+    <<nobr>><<script>>
+        const hasKey = window.hasValidDigitalKey && window.hasValidDigitalKey("会议室202");
+        const keyInfo = window.getDigitalKeyInfo && window.getDigitalKeyInfo("会议室202");
+        State.temporary.hasDigitalKey = hasKey;
+        State.temporary.keyInfo = keyInfo;
+        
+        const activeEvents = setup.activeLocationEvents || [];
+        const roomEvent = activeEvents.find(event => 
+            event && event.location === "会议室202" && event.active && !event.triggered
+        );
+        State.temporary.hasActiveEvent = !!roomEvent;
+        State.temporary.roomEvent = roomEvent;
+    <</script>><</nobr>>
+    
+    <<if _hasDigitalKey>>
+        你的手机显示有会议室202的有效电子钥匙。
+        <<if _keyInfo.valid>>
+            剩余时间：<<print _keyInfo.remainingMinutes>>分钟（到<<print _keyInfo.expireHour>>:<<print (_keyInfo.expireMinute < 10 ? "0" : "") + _keyInfo.expireMinute>>过期）
+        <</if>>
+        [[用电子钥匙开门->会议室202解锁]]
+        <<if _hasActiveEvent>>
+            [[在门外待着->会议室202门外偷听]]
+        <</if>>
+        [[返回二楼->二楼]]
+            <<else>>
+            你的手机没有会议室202的有效电子钥匙，无法进入。
+            <<if _keyInfo && _keyInfo.reason>>
+                <<print _keyInfo.reason>>
+            <</if>>
+            <<if _hasActiveEvent>>
+                <<if _roomEvent>>
+                    你听到门内传来<<print _roomEvent.title.replace("正在进行", "")>>的声音。
+                <</if>>
+                [[在门外待着->会议室202门外偷听]]
+            <</if>>
+            [[返回二楼->二楼]]
+        <</if>>
+    <</if>>
+<<else>>
+    <<nobr>><<set $CurLocation = "会议室202">><<passTime 5>><<script>>
+    try {
+        if (window.triggerLocationEvent && window.triggerLocationEvent("会议室202")) {
+            setTimeout(function() {
+                Engine.play("触发事件");
+            }, 100);
+        }
+    } catch (error) {
+        console.error("Error triggering location event:", error);
+    }
+    <</script>><</nobr>>会议室202是个小型会议室，适合小组讨论，你面试的时候就在这里。
+
+    [[锁上门->会议室202上锁]]
+    [[返回二楼->二楼]]
+<</if>>
+
+
+:: 会议室202上锁 [bbar] {"position":"4900,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "会议室202">><<passTime 3>><<set $meetingRoomLocks["会议室202"] = true>><</nobr>>你从里面激活了会议室202的电子门锁。门锁显示屏显示红色"已锁定"状态，并提示"需要电子钥匙"。
+
+现在这个会议室已经被电子门锁锁定，只有拥有有效电子钥匙的人才能进入。
+
+[[返回二楼->二楼]]
+
+
+:: 会议室202继续偷听 [bbar] {"position":"6550,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "二楼">><<passTime 6>><</nobr>>你决定继续待一会儿。
+
+<<if Math.random() > 0.8>>
+    门突然打开，一位你不太熟悉的同事走了出来，看到你站在门边。
+    
+    "请问你有什么事吗？"他有些疑惑地问。
+    
+    [[说谢谢就离开->二楼]]
+<<else>>
+    你继续待着，什么都没听到。
+    
+    [[悄悄离开->二楼]]
+<</if>>
+
+
+:: 会议室202解锁 [bbar] {"position":"5050,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "会议室202">><<passTime 3>><<set $meetingRoomLocks["会议室202"] = false>><</nobr>>你用手机上的电子钥匙打开了会议室202的门。电子门锁显示屏闪烁绿光，发出"嘀"的一声，门锁自动打开。
+
+会议室202是个小型会议室，适合小组讨论。
+
+<<nobr>><<script>>
+try {
+    if (window.triggerLocationEvent && window.triggerLocationEvent("会议室202")) {
+        setTimeout(function() {
+            Engine.play("触发事件");
+        }, 100);
+    }
+} catch (error) {
+    console.error("Error triggering location event:", error);
+}
+<</script>><</nobr>>
+
+[[锁上门->会议室202上锁]]
+[[返回二楼->二楼]]
+
+
+:: 会议室202门外偷听 [bbar] {"position":"6400,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "二楼">><<passTime 10>><<script>>
+    
+    const activeEvents = setup.activeLocationEvents || [];
+    const roomEvent = activeEvents.find(event => 
+        event && event.location === "会议室202" && event.active && !event.triggered
+    );
+    State.temporary.roomEvent = roomEvent;
+<</script>><</nobr>>你悄悄地贴近会议室202的门，仔细倾听里面的声音。
+
+<<if _roomEvent>>
+    你听到里面传来小规模讨论的声音，似乎HR在打电话。
+    
+    "他……"
+    
+    "我觉得他……"
+<<else>>
+    你贴近门边仔细倾听，但里面似乎很安静，可能没有会议在进行。
+<</if>>
+
+[[继续待着->会议室202继续偷听]]
+[[悄悄离开->二楼]]
+
+
+:: 再次抽烟 [bbar] {"position":"3050,550","size":"100,100"}
+<<nobr>><<set $CurLocation = "天台">><<passTime 8>><</nobr>>你又点燃了一支烟。连续抽烟让你感到有些头晕，但也确实缓解了工作压力。
+
+你开始思考今天的工作安排。测评报告的截止时间越来越近，但在这个宁静的天台上，时间似乎过得特别慢。
+
+雨势似乎有所减弱，但天空依然阴沉。你意识到不能在这里待太久，毕竟还有重要的工作要完成。
+
+<em>过度抽烟让你感到有些不适，应该适度控制。</em>
+
+[[掐灭烟头，离开->天台]]
+
+
+:: 刚才的梦 {"position":"650,950","size":"100,100"}
+<<set $dreamVisited = true>>\
+你用力回忆刚才的梦，很痛，好像有人从树上摔了下来。
+<<timed 2s>>\
+对，阳光刺眼，夏天刚过去一半。
+
+[[摸手机->夹层（休息室）]]
+<</timed>>\
+
+
+:: 制作咖啡 [bbar] {"position":"2850,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "公共吧台">><<passTime 8>><</nobr>>因为“需要清洗”的灯亮着，你不知道咖啡机是否能用。
+
+[[回到走廊->二楼]]
+
+
+:: 前台区域 [bbar] {"position":"2900,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "前台">><<passTime 5>><</nobr>>前台有张白色桌子，黑色显示器左右是两盆锦松。显示器座前粘了一张便笺："临时去配合物业防漏水检查，稍后回来。"
+
+[[返回大厅->一楼大厅]]
+
+
+:: 受刑 {"position":"1550,825","size":"100,100"}
+现在我已经无路可走了。
+我知道你自己犯了什么错吗？贪婪、欺骗，懦弱
+可是人的这一生中，每天都在撒谎，每天都在犯错，为什么我偏偏只记得这样一件事情？
+
+这件事对我很重要，但它真的构成我生命的全部吗？
+
+可是，我已经来不及细想了，我沉浸在悲伤中，我沉浸在愧疚中，我沉浸在某一种难言的情绪中无法忘怀。而就在那一刻，闸刀落了下来
+
+[[退出]]
+
+
+:: 口袋 {"position":"350,850","size":"100,100"}
+你的口袋里有：
+<<for _i to 0; _i lt $items.length; _i++>>
+* <<print $items[_i]>>
+<</for>>
+
+
+:: 向上 [bbar] {"position":"1650,250","size":"100,100"}
+<span class="drunk">浮动的光线</span>
+
+那是一扇窗，光照进来的地方。
+一个黑色的影子在光里盘旋，搅动着我的注意力。
+
+<<if $FeatherGet == true>><<set $FeatherFound= true>><<link 让注意力穿透那个黑影吧 道具-羽毛>><</link>>
+<<elseif $FeatherGet== false>> \
+
+一圈又一圈，它盘旋得不知疲倦。
+我不明白，一只鸟，为什么会出现在这里？
+
+<<link 再次感受…… 2>>\
+<</link>>\
+<<endif>>
+
+
+:: 向下 [bbar] {"position":"1775,250","size":"100,100"}
+我的耳朵竖了起来。
+是的，我听见了！我听见了什么！
+
+<<if $FeatherFound == true>>\
+/* 进入找硬币的剧情，羽毛带来了畅想的能力，使其发现新的情况 */\
+囚室不止这一间！我知道的，那件囚室一定有什么声音，叹息或是什么，我的目光可以飞过去。
+
+/* 接下来引导玩家回现实，把硬币用掉，并找到心脏 */\
+<<link 感受些其他的吧…… 2>>\
+<</link>>\
+<<elseif $FeatherFound == false>>\
+
+震动声引起了<strong>窗外天台上</strong>鸟儿的扑棱……我的注意力被吸引到了过去。
+/* 提示先去看羽毛，而羽毛有可能不在囚室内，而在更自由的地方 */\
+
+<<link 什么东西在上下浮动？ 2>>
+<</link>>
+<</if>>
+
+
+:: 向前 [bbar] {"position":"1775,125","size":"100,100"}
+远处，一个<span class="drunk">黑黢黢的老鼠洞</span>引起我的注意，向白天一样拽走我的思绪。
+
+  如果这是一个<strong>可以退出的什么</strong>，那[[退出]]键就会镶嵌于此。
+  
+  <<link 再次感受…… 2>><</link>>
+
+
+:: 向后 [bbar] {"position":"1650,125","size":"100,100"}
+<span class="drunk">噗通、噗噗通、噗通、噗通、噗噗通……</span>
+
+出于痛楚，心跳的每次撞击似乎要把我给毁灭。
+噗通、噗噗通、噗通、噗通、噗噗通……
+<span class="drunk">撞击、猛烈地撞击、撞击、撞击、猛烈地撞击……</span>
+
+<<if $HeartGet == true>>\  
+<<set $HeartFound= true>>\
+<<link 我决定再次转移我的注意力…… 2>>\
+<</link>>\
+<<elseif $HeartGet== false>> \ 
+<<link 停下来！快停下来！ 退出>>\
+<</link>>\
+<<endif>>
+
+
+:: 吧台 [bbar] {"position":"2750,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "公共吧台">><<passTime 5>><<script>>
+
+try {
+    if (window.triggerLocationEvent && window.triggerLocationEvent("公共吧台")) {
+        setTimeout(function() {
+            Engine.play("触发事件");
+        }, 100);
+    }
+} catch (error) {
+    console.error("Error triggering location event:", error);
+}
+<</script>><</nobr>>公共吧台实际上就是一条黑色长桌，桌上放了一个没洗的午餐饭盒，保洁阿姨通常<strong>下午四点半</strong>左右来收拾，她甚至会帮忙洗饭盒。
+
+长桌一边有台制冰机，没人的时候也会咯吱咯吱叫，旁边是一台咖啡机，“需要清洗”的灯一直亮着。
+
+[[清理一下桌面？->清理吧台]]
+[[使用咖啡机->制作咖啡]]
+[[回到走廊->二楼]]
+
+
+:: 处理事件选择 [bbar] {"position":"3800,850","size":"100,100"}
+<<if $eventSystem["eventChoice"] && setup.currentEvent>>\
+    <<set $eventResult = "">>\
+    <<set $gameTestingProgress = $gameTestingProgress || 0>>\
+    <<set _enableOnComplete = true>>\
+    <<nobr>>\
+    <<switch $eventSystem["eventChoice"].action>>
+        <<case "ask_cleaning_lady">>
+            <<passTime 10>>
+            <<set $eventResult = "她说，就普通的一天，雨大差点滑到，要是老人就不好过了。">>
+        <<case "help_cleaning">>
+            <<passTime 10>>
+            <<set $eventResult = "她说，老乡归老乡，工作归工作。">>
+        <<case "chat_cleaning_lady">>
+            <<passTime 15>>
+            <<set $eventResult = "她说，她孙子会学舌了，会学鹦鹉，说，你可知罪。">>    
+        <<case "coin_cleaning_lady">>
+            <<passTime 15>>
+            <<if $items.includes("硬币")>>
+                <<set $eventResult = "她抬头看了一眼你，目光里有大地般的安稳。\<br\>她接过硬币，说，好孩子，没人知道的事，总有人知道，又还给了你。">>
+            <<else>>\
+                <<set $eventResult = "她继续忙她的。\<br\>手里的抹布突然停下，说，<strong>硬币</strong>还回来，也算个了结。\<br\>找不着？我在<strong>你工位的屏幕里</strong>看到过。">>
+                <<set _enableOnComplete = false>>
+            <</if>>        
+        <<case "join_other_meeting">>
+            <<passTime 20>>
+            <<set $eventResult = "你推开门，会议室里突然安静了。">>
+        <<case "eavesdrop_201">>
+            <<passTime 10>>
+            <<set $eventResult = "你在门外呆了一会，什么都没听到。">>
+        <<case "leave_quietly">>
+            <<passTime 5>>
+            <<set $eventResult = "你安静离开，没有人知道你曾在门口。">>
+        <<case "ask_colleague">>
+            <<passTime 10>>
+            <<set $eventResult = "技术同事告诉你出现了网络问题，技术组正在处理。他建议你可以先在公司转一圈。">>
+        <<case "retry_connection">>
+            <<passTime 15>>
+            <<if Math.random() > 0.5>>
+                <<set $eventResult = "你尝试重新连接服务器，经过几次尝试后成功连接。看来问题只是暂时的网络波动。你可以继续工作了。">>
+            <<else>>
+                <<set $eventResult = "你尝试重新连接服务器，但没有成功。服务器问题需要技术组来解决，你只能等待或者先做其他工作。">>
+            <</if>>
+        <<case "wait">>
+            <<passTime 20>>
+            <<set $eventResult = "你选择等待问题自动解决。20分钟后，服务器恢复了正常，但这段时间你只是干等，有点浪费时间。">>
+        <<case "open_door_202">>
+            <<passTime 20>>
+            <<set $eventResult = "你打开了会议室门，转身关上，再回头。\<br\>HR坐桌对面，说，你还在玩那个评测游戏吧，可以不用玩了，情况需要你的理解，你考虑一下，降薪或者离职。\<br\>什么，为什么？那当然是因为……">>
+          <<case "wait_door_202">>
+            <<passTime 60>>
+            <<set $eventResult = "你在会议室门口等了一小时，时间到了，你发现HR不见了。">>
+        <<case "join_break">>
+            <<passTime 20>>
+            <<set $eventResult = "你想加入讨论，但你没看过《永恒的终结》，同事们聊得眉飞色舞，没人跟你搭话。\<br\>没多久，大家回到了各自工位，吧台只剩你一人。">>
+        <<case "quick_coffee">>
+            <<passTime 5>>
+            <<set $eventResult = "你提起咖啡机的状态不健康。有同事看了你一眼，用咖啡机打了一杯咖啡。\<br\>同事举着咖啡走了，其他人也回到了自己工位，吧台只剩你一人。">>
+        <<case "focus_work">>
+            <<passTime 5>>
+            <<set $eventResult = "你没有参与下午茶。感觉错过了什么，又好像什么都没错过。\<br\>没多久，大家回到了各自工位，吧台只剩你一人。">>
+        <<case "report_bugs">>
+            <<passTime 25>>
+            <<set $eventResult = "你主动进入会议室，向领导汇报了你在测评中发现的相关问题。你的及时反馈为解决bug提供了关键信息，得到了大家的认可。">>
+        <<case "wait_call">>
+            <<passTime 15>>
+            <<set $eventResult = "你在门外等待，但没有人叫你进入。会议结束后，领导出来时看到了你，询问了你的测评进度，并简单交流了一些问题。">>
+        <<case "prepare_report">>
+            <<passTime 30>>
+            <<set $eventResult = "你回到工位，花时间整理了详细的测评报告。虽然错过了现场讨论，但你准备的报告内容更加完整和专业。">>
+        <<case "help_delivery">>
+            <<passTime 10>>
+            <<set $eventResult = "你帮助快递员接收了包裹，并记录了收件信息。后来前台回来时对你的帮助表示感谢。你的善举为同事解决了问题。">>
+        <<case "explain_situation">>
+            <<passTime 5>>
+            <<set $eventResult = "你向快递员解释了前台的情况，建议他等一会儿或者留下联系方式。快递员表示理解，决定等待一会儿。">>
+        <<case "ignore">>
+            <<passTime 5>>
+            <<set $eventResult = "你选择不介入快递的事情，继续自己的工作。这是一个明智的选择，不是所有事情都需要你来处理。">>
+        <<case "check_leak">>
+            <<passTime 15>>
+            <<set $eventResult = "你检查了夹层（休息室）周围的情况，发现墙面有轻微渗水，明天再说吧……？">>
+        <<case "enjoy_rain">>
+            <<passTime 10>>
+            <<set $eventResult = "你静静听着雨声，让心情平静下来，世界突然安静了。">>
+        <<case "check_weather">>
+            <<passTime 5>>
+            <<set $eventResult = "你查看了天气预报，发现雨会持续到晚上，但强度会逐渐减弱。你开始考虑是否需要准备雨具或者调整回家路线。">>
+        <<case "observe_pigeon">>
+            <<passTime 15>>
+            <<set $eventResult = "你静静观察鹦鹉。它用发亮的喙梳理羽毛，偶尔叫两声。">>
+        <<case "approach_pigeon">>
+            <<passTime 10>>
+            <<if !$items.includes("羽毛")>>
+                <<set $eventResult = "你俯下身，小心接近鹦鹉。它并没有飞走，反而好奇地盯着你。它说，24岁，24岁，24岁。你惊讶于鹦鹉说出了你的年龄，它说，你可知罪，你可知罪，说完扑腾了一下。一根绿色的羽毛飘落在你脚边。你轻轻捡起了这根羽毛。">>
+                <<set $items.push("羽毛")>>
+                <<script>>window.showToast("夏天过去了一半", "得到道具“羽毛”", 5000, "success");<</script>>
+                <<set $FeatherGet = true>>
+                <<set $gameProgress += 1>>
+            <<else>>
+                <<set $eventResult = "你尝试接近鹦鹉，但它警觉地后退了几步，保持着安全距离。">>
+            <</if>>
+        <<case "leave_pigeon">>
+            <<passTime 3>>
+            <<set $eventResult = "你选择不打扰鹦鹉，让它继续享受这宁静的时光。有时候，保持距离也是一种尊重。">>
+        <<case "eavesdrop_outside">>
+            <<passTime 12>>
+            <<set $eventResult = "你在门外听，虽然无法听到完整的对话，但获得了一些不知到有用没用的信息片段。">>
+        <<case "leave_office">>
+            <<passTime 5>>
+            <<set $eventResult = "你收拾好东西，准备离开公司。走到门口时，你听到远处传来一声烟花爆炸的声音，紧接着是人们的欢呼声。也许是某个节日，也许是某种庆祝活动，但这些热闹与你无关。你独自走进了夜色中。">>
+            <<goto "游戏结束_正常下班">>
+        <<case "stay_longer">>
+            <<passTime 15>>
+            <<set $eventResult = "你决定在空荡荡的办公室里再待一会儿。没有了同事的喧嚣，没有了电话铃声，整个空间显得格外宁静。你可以听到自己的呼吸声，还有远处城市的低沉嗡鸣。">>
+        <<default>>
+            <<set $eventResult = "你完成了这个选择。">>
+    <</switch>>
+    <</nobr>>\
+    <<if _enableOnComplete>>\
+        <<onEventChoiceComplete>>\
+    <</if>>\
+    <<print $eventResult>>
+    <<switch $eventSystem["eventChoice"].action>>\
+        <<case "open_door_202">>\
+
+            你的心脏咕咚了一下，趁人不注意，你<strong>悄悄捏住了它</strong>。
+            <<set $items.push("心脏")>>\
+            <<script>>window.showToast("夏天过去了一半", "得到道具“心脏”", 5000, "success");<</script>>\
+            <<set $HeartGet = true>>\
+            <<set $HeartFound = true>>\
+            <<set $gameProgress += 1>>\
+        <<default>>\
+    <</switch>>\
+    
+    <<nobr>>
+    <<if setup.currentEvent && setup.currentEvent.isGlobal>>
+        <!-- 全局事件返回到当前位置 -->
+        <<if $CurLocation == "会议室101" || $CurLocation == "会议室102">>
+            [[返回一楼大厅->一楼大厅]]
+        <<elseif $CurLocation == "会议室201" || $CurLocation == "会议室202">>
+            [[返回二楼->二楼]]
+        <<elseif $CurLocation == "工位">>
+            [[继续工作->工位]]
+        <<elseif $CurLocation == "公共吧台">>
+            [[继续->吧台]]
+        <<elseif $CurLocation == "一楼大厅">>
+            [[继续在大厅->一楼大厅]]
+        <<elseif $CurLocation == "夹层（休息室）">>
+            [[继续在夹层（休息室）->夹层（休息室）]]
+        <<elseif $CurLocation == "天台">>
+            [[返回天台->天台]]
+        <<elseif $CurLocation == "二楼">>
+            [[继续在二楼->二楼]]
+        <<else>>
+            [[继续->$CurLocation]]
+        <</if>>
+    <<else>>
+        <!-- 普通事件的返回逻辑 -->
+        <<if $CurLocation == "会议室101" || $CurLocation == "会议室102">>
+            [[返回一楼大厅->一楼大厅]]
+        <<elseif $CurLocation == "会议室201" || $CurLocation == "会议室202">>
+            [[返回二楼->二楼]]
+        <<elseif $CurLocation == "工位">>
+            [[继续工作->工位]]
+        <<elseif $CurLocation == "公共吧台">>
+            [[继续->吧台]]
+        <<elseif $CurLocation == "一楼大厅">>
+            [[继续在大厅->一楼大厅]]
+        <<elseif $CurLocation == "夹层（休息室）">>
+            [[继续在夹层（休息室）->夹层（休息室）]]
+        <<elseif $CurLocation == "天台">>
+            [[返回天台->天台]]
+        <<else>>
+            [[继续->$CurLocation]]
+        <</if>>
+    <</if>>
+    <</nobr>>
+    
+    <<unset $eventSystem["eventChoice"]>>
+<<else>>
+    处理选择时发生错误，请返回游戏。
+    [[返回夹层（休息室）->夹层（休息室）]]
+<</if>>
+
+
+:: 天台 [bbar] {"position":"2750,700","size":"100,100"}
+<<nobr>><<set $CurLocation = "天台">><<passTime 5>><<script>>
+try {
+    if (window.triggerLocationEvent && window.triggerLocationEvent("天台")) {
+        setTimeout(function() {
+            Engine.play("触发事件");
+        }, 100);
+    }
+} catch (error) {
+    console.error("Error triggering location event:", error);
+}
+<</script>><</nobr>>你来到了二楼天台。这里也没什么好视野，顶多看清一楼餐厅雨棚，雨水顺着雨棚龙骨滑下，在人行道上积了片水坑，撑伞行人纷纷绕开。
+
+在天台的一角，你注意到有鸟屎，天台会有羽毛掉落吗？
+
+你可以：
+
+[[放空->放空]]
+[[返回二楼->二楼]]
+
+
+:: 夹层（休息室） [bbar] {"position":"1550,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "夹层（休息室）">><<passTime 5>><<script>>
+try {
+    if (window.triggerLocationEvent && window.triggerLocationEvent("夹层（休息室）")) {
+        setTimeout(function() {
+            Engine.play("触发事件");
+        }, 100);
+    }
+} catch (error) {
+    console.error("Error triggering location event:", error);
+}
+<</script>><</nobr>><<if $hour >= 19>>夹层（休息室）陷入了完全黑暗。几个豆豆沙发在阴影中若隐若现。
+
+你可以：
+[[下楼去一层->一楼大厅]]
+[[上楼去二层->二楼]]
+[[在黑暗中静坐一会儿->黑暗中静坐]]
+<<else>>休息室位于一楼和二楼的夹层，因为没有窗户，这里是公司最隐蔽的地方。
+
+该去<strong>一楼工位</strong>了……
+
+你可以：
+[[下楼去一层->一楼大厅]]
+[[上楼去二层->二楼]]
+[[继续睡->继续休息]]
+<</if>>
+
+
+:: 审判-心脏 {"position":"1850,675","size":"100,100"}
+<<if !$HeartFound == true>>\
+我抚摸自己的胸口，剧烈地跳动，但感受不到心的存在。<strong>心脏去哪了,在另一个世界吗？</strong>
+[[退出]]
+<<else>>\
+<<script>>SimpleAudio.select("rainSong").volume(0.3).loop(true).play();<</script>>\
+<<type 200ms>>\
+<b>奶奶为什么不在了？小鸟为什么飞走？</b>
+
+我偷偷拿走了奶奶的<<print $Money>>元钞票，用它买走了小鸟。
+我贪玩，用红笔在小鸟的脸颊上点了两点红圈。
+小鸟疼，咬了我。
+而我把小鸟甩到了地上。
+小鸟踉踉跄跄逃上了樱桃树，奶奶每年都会架梯子去摘樱桃。
+樱桃很红，很野，很甜。
+我哭着求奶奶，说被小鸟欺负了，要把小鸟扔掉。
+奶奶温柔地对我说，不要怪小鸟，她会把小鸟哄好，带回来和我道歉。
+奶奶为了捉小鸟，又架上那把竹梯，爬上樱桃树。
+小鸟却趁奶奶没站稳，啄了奶奶的耳朵。
+一口、一口、又一口。
+奶奶从梯子上掉了下来。
+后脑勺撞地。
+院子里刮起一阵滚烫的风。
+<span class="blur">奶奶是因为<<linkreplace 我>><b>我</b>而去世的。
+<<script>>SimpleAudio.select("rainSong").volume(0.3).loop(true).play();<</script>>\<</linkreplace>></span><<type 200ms>>
+
+那时是正午。那天是大暑。天空中挂着一枚硕大的太阳。
+<span class="blur2">奶奶是因为我而去世的。</span>
+家里没有人，很寂静，只剩万物此起彼伏的震颤。
+<span class="blur3">奶奶是因为我而去世的。</span>
+蝉鸣声一浪高过一浪，把我的心跳，碾得粉碎。
+<<set $gameProgress = 300>>
+[[退出]]
+<</type>>
+<</type>>
+<</if>>
+
+
+:: 审判-硬币 {"position":"1625,675","size":"100,100"}
+那时，我没有想很多，只是被巨大的欣喜所冲没。
+<<type 200ms>>
+我忘了问一件最重要的事：<<print $BirdName>>要多少钱？
+我也忘了我的零花钱在上礼拜全被妈妈没收了。
+以至于在第二天出门上学前，我才意识到事情的严重性。
+
+实际上，<<print $BirdName>>花的<<print $Money>>元中，只有1元是我的。
+<<linkreplace 剩下的>>剩下的那些钱，是我从奶奶的黑布袋里<b>偷</b>来的。<</linkreplace>>
+<span class="blur">奶奶应该没有发现。</span>
+
+可是，把<<print $BirdName>>接回家后的第三天，我就厌倦了，把它丢给了我的奶奶。
+奶奶每天逗它玩、喂它黄小米、白开水。
+而我则拥有了新的玩物：小蚂蚁、蚕宝宝、花蝴蝶……
+
+奶奶总是会接过我丢下的、吃剩的、玩腻的，并跟在我的身后唠叨：“小<<print $Name>>，你慢点跑，奶奶腿不好。”
+奶奶总是那么<<linkreplace 温柔而包容。>>温柔而包容，以至于我偷拿了她的<<print $Money>>元钱，也不计较。<</linkreplace>>
+
+我想念我奶奶了，可奶奶已经不在很久了。而小鸟，也飞走了。
+<<set $gameProgress = 200>>\
+<<link 为什么？ 审判-心脏>><</link>>
+<<link 结束 受刑>><</link>>
+
+<</type>>
+
+
+:: 审判-羽毛 {"position":"1450,675","size":"100,100"}
+<<type 200ms>>\
+<b>这个红点，是我点在</b><<linkreplace 小鸟的羽毛上的。>><b>小鸟的羽毛上的。</b>
+
+我不知道那时自己为什么会这么干。
+也许是出于贪玩，也许是出于贪婪。
+
+同样地，我也没仔细想过，为什么要接<<print $BirdName>>回家。
+也许是出于冲动，也许是出于自私。
+
+实际上，我根本没有担负起养一只小鸟的责任。
+在带回家的第三天，我就把它丢给了我的奶奶。
+奶奶每天负责逗它玩、喂它黄小米、白开水。
+而我则拥有了新的玩物：小蚂蚁、蚕宝宝、花蝴蝶……
+
+奶奶总是会接过我丢下的、吃剩的、玩腻的，并跟在我的身后唠叨：“小<<print $Name>>，你慢点跑，奶奶腿不好。”
+奶奶总是那么<<linkreplace 温柔而包容。>>温柔而包容，以至于小鸟因为我的贪玩咬伤了奶奶，依然笑着说没事。<</linkreplace>>
+
+我想念我奶奶了，可奶奶已经不在很久了。而小鸟，也飞走了。
+<<set $gameProgress = 100>>\
+<<link 为什么？ 审判-心脏>><</link>>
+<<link 结束 受刑>><</link>>
+<</linkreplace>>
+<</type>>
+
+
+:: 工位 [bbar] {"position":"2000,850","size":"100,100"}
+<<if $gameStarted>>\
+    <<set $gameStarted = false>>\
+    <<reivewGame>>\
+<</if>>\
+<<nobr>><<set $CurLocation = "工位">><<script>>
+try {
+    if (window.triggerLocationEvent && window.triggerLocationEvent("工位")) {
+        setTimeout(function() {
+            Engine.play("触发事件");
+        }, 100);
+    }
+} catch (error) {
+    console.error("Error triggering location event:", error);
+}
+<</script>><</nobr>>这是你的工位，桌面放着没吃完的包子。
+
+<em>当前游戏进度：
+<<print Math.min(3, $gameProgress)/3 * 100>>%</em>
+
+该干活了。
+
+[[开机->电脑开机]]
+[[离开工位->一楼大厅]]
+
+
+:: 工位监控设置 {"position":"3900,850","size":"100,100"}
+===== 系统设置 =====
+
+当前时间：<<print $hour>>:<<print ($minute < 10 ? "0" : "") + $minute>>
+
+监控状态：<<if $workstationMonitoringEnabled>>已启用<<else>>已禁用<</if>>
+Toast提醒：<<if $toastNotificationsEnabled>>已启用<<else>>已禁用<</if>>
+
+===== 会议室电子门锁状态 =====
+* 会议室101：<<if $meetingRoomLocks["会议室101"]>>🔒 已锁<<else>>🔓 未锁<</if>>
+* 会议室102：<<if $meetingRoomLocks["会议室102"]>>🔒 已锁<<else>>🔓 未锁<</if>>
+* 会议室201：<<if $meetingRoomLocks["会议室201"]>>🔒 已锁<<else>>🔓 未锁<</if>>
+* 会议室202：<<if $meetingRoomLocks["会议室202"]>>🔒 已锁<<else>>🔓 未锁<</if>>
+
+<<script>>
+    if (window.cleanExpiredDigitalKeys) {
+        window.cleanExpiredDigitalKeys();
+    }
+<</script>>
+
+你拥有的电子钥匙：
+<<if $digitalKeys.length == 0>>
+* 无
+<<else>>
+<<for _i to 0; _i lt $digitalKeys.length; _i++>>
+<<set _key = $digitalKeys[_i]>>
+<<script>>
+    const keyInfo = window.getDigitalKeyInfo && window.getDigitalKeyInfo(State.variables.digitalKeys[_i].room);
+    State.temporary.keyInfo = keyInfo;
+<</script>>
+<<if _keyInfo.valid>>
+* <<print _key.room>>电子钥匙 - 剩余<<print _keyInfo.remainingMinutes>>分钟
+<<else>>
+* <<print _key.room>>电子钥匙 - 已过期
+<</if>>
+<</for>>
+<</if>>
+
+<<button "解锁所有会议室">>
+    <<set $meetingRoomLocks["会议室101"] = false>>
+    <<set $meetingRoomLocks["会议室102"] = false>>
+    <<set $meetingRoomLocks["会议室201"] = false>>
+    <<set $meetingRoomLocks["会议室202"] = false>>
+    <<goto "工位监控设置">>
+<</button>>
+
+<<button "锁定所有会议室">>
+    <<set $meetingRoomLocks["会议室101"] = true>>
+    <<set $meetingRoomLocks["会议室102"] = true>>
+    <<set $meetingRoomLocks["会议室201"] = true>>
+    <<set $meetingRoomLocks["会议室202"] = true>>
+    <<goto "工位监控设置">>
+<</button>>
+
+<<button "获得所有电子钥匙（60分钟）">>
+    <<script>>
+        if (window.addDigitalKey) {
+            window.addDigitalKey("会议室101", 60);
+            window.addDigitalKey("会议室102", 60);
+            window.addDigitalKey("会议室201", 60);
+            window.addDigitalKey("会议室202", 60);
+        }
+    <</script>>
+    <<goto "工位监控设置">>
+<</button>>
+
+<<button "清除所有电子钥匙">>
+    <<set $digitalKeys = []>>
+    <<goto "工位监控设置">>
+<</button>>
+
+===== 工位监控设置 =====
+
+<<if $workstationMonitoringEnabled>>
+当前设置：
+* 离开工位提醒时间：<<print $awayFromWorkstationThreshold>>分钟
+* 已发送提醒次数：<<print $workstationReminderCount>>次
+
+调整提醒时间：
+<<button "30分钟">>
+    <<set $awayFromWorkstationThreshold = 30>>
+    <<set $workstationReminderSent = false>>
+    <<goto "工位监控设置">>
+<</button>>
+
+<<button "45分钟">>
+    <<set $awayFromWorkstationThreshold = 45>>
+    <<set $workstationReminderSent = false>>
+    <<goto "工位监控设置">>
+<</button>>
+
+<<button "60分钟">>
+    <<set $awayFromWorkstationThreshold = 60>>
+    <<set $workstationReminderSent = false>>
+    <<goto "工位监控设置">>
+<</button>>
+
+<<button "90分钟">>
+    <<set $awayFromWorkstationThreshold = 90>>
+    <<set $workstationReminderSent = false>>
+    <<goto "工位监控设置">>
+<</button>>
+
+<<button "重置提醒计数">>
+    <<set $workstationReminderCount = 0>>
+    <<set $workstationReminderSent = false>>
+    <<goto "工位监控设置">>
+<</button>>
+<</if>>
+
+<<button "<<if $workstationMonitoringEnabled>>禁用监控<<else>>启用监控<</if>>">>
+    <<set $workstationMonitoringEnabled = !$workstationMonitoringEnabled>>
+    <<if !$workstationMonitoringEnabled>>
+        <<set $workstationReminderSent = false>>
+    <</if>>
+    <<goto "工位监控设置">>
+<</button>>
+
+<<button "<<if $toastNotificationsEnabled>>禁用Toast提醒<<else>>启用Toast提醒<</if>>">>
+    <<set $toastNotificationsEnabled = !$toastNotificationsEnabled>>
+    <<goto "工位监控设置">>
+<</button>>
+
+<<button "测试Toast提醒">>
+    <<script>>
+        if (window.showToast) {
+            window.showToast("测试系统", "这是一个普通消息的测试", 3000, "info");
+            setTimeout(() => {
+                window.showToast("测试系统", "这是一个警告消息的测试", 3000, "warning");
+            }, 500);
+            setTimeout(() => {
+                window.showToast("测试系统", "这是一个错误消息的测试", 3000, "error");
+            }, 1000);
+            setTimeout(() => {
+                window.showToast("测试系统", "这是一个成功消息的测试", 3000, "success");
+            }, 1500);
+        }
+    <</script>>
+<</button>>
+
+<<button "发送测试消息">>
+    <<set $wechatMessages.push({
+        read: false,
+        content: "这是一条测试消息，用于验证时间显示功能是否正常工作。",
+        from: "测试系统",
+        preview: "这是一条测试消息，用于验证时间显示功能...",
+        hour: $hour,
+        minute: $minute
+    })>>
+    <<script>>
+        window.refreshCellphoneNotifications();
+        if (window.showToast && State.variables.toastNotificationsEnabled) {
+            window.showToast("测试系统", "这是一条测试消息，用于验证时间显示功能...", 4000, "success");
+        }
+    <</script>>
+    <<goto "工位监控设置">>
+<</button>>
+
+<<button "激活测试偷听事件">>
+    <<set setup.activeLocationEvents.push({
+        id: "test_eavesdrop",
+        location: "会议室101",
+        title: "测试会议正在进行",
+        description: "这是一个测试事件，用于验证门外偷听功能。",
+        choices: [
+            {text: "进入会议室", action: "join_other_meeting", consequence: "里面的同事冲上来，说，抱歉，关上了会议室门"},
+            {text: "在门外待着", action: "eavesdrop", consequence: "获得信息"},
+            {text: "离开", action: "leave_quietly", consequence: "错过机会"}
+        ],
+        active: true,
+        triggered: false,
+        importance: "normal"
+    })>>
+    <<goto "工位监控设置">>
+<</button>>
+
+<<button "查看门外偷听功能说明">>
+    <<script>>
+        Dialog.close();
+    <</script>>
+    <<goto "功能说明">>
+<</button>>
+
+<<button "测试19:00全局事件">>
+    <<set $hour = 19>>
+    <<set $minute = 0>>
+    <<set $globalEventTriggered = false>>
+    <<script>>
+        Dialog.close();
+        if (window.checkTimedEvents) {
+            window.checkTimedEvents();
+        }
+    <</script>>
+<</button>>
+
+<<button "关闭设置">>
+    <<script>>
+        Dialog.close();
+    <</script>>
+<</button>>
+
+
+window.formatMessageTime = function(msgHour, msgMinute, currentHour, currentMinute) {
+    const msgTotalMinutes = msgHour * 60 + msgMinute;
+    const currentTotalMinutes = currentHour * 60 + currentMinute;
+    const diffMinutes = currentTotalMinutes - msgTotalMinutes;
+    
+    if (diffMinutes < 0) {
+
+        return msgHour + ":" + (msgMinute < 10 ? "0" : "") + msgMinute;
+    } else if (diffMinutes === 0) {
+        return "刚刚";
+    } else if (diffMinutes < 60) {
+        return diffMinutes + "分钟前";
+    } else if (diffMinutes < 120) {
+        return "1小时前";
+    } else if (diffMinutes < 1440) {
+        const hours = Math.floor(diffMinutes / 60);
+        return hours + "小时前";
+    } else {
+        
+        return msgHour + ":" + (msgMinute < 10 ? "0" : "") + msgMinute;
+    }
+};
+
+
+:: 开始 [bbar] {"position":"500,850","size":"100,100"}
+<<nobr>>
+<<set $CurLocation = "夹层（休息室）">><</nobr>><<linkreplace "嗯......">>
+<<script>>SimpleAudio.select("rain").volume(0.1).loop(true).play();window.updateRain(0.5); <</script>>
+<<type 250ms skipkey "Control">>你从公司夹层的豆豆沙发上醒来，雨砸在一楼快餐厅的雨棚上，溅出亚克力色的声响。<</type>>
+<<timed 10s>>\
+
+[[回忆刚才的梦->刚才的梦]]
+<</timed>>\
+<</linkreplace>>
+
+
+:: 开始游戏 [bbar] {"position":"1100,850","size":"100,100"}
+<<if !$gameStarted>>
+<<set $gameStarted = true>>
+<</if>>
+<<if $firstPlayGame>>
+    <<set $firstPlayGame = false>>
+    <<set $gameProgress = 0.5>>
+<</if>>
+<<audio ":playing" pause>>
+<<goto 0>>
+
+
+:: 心脏 {"position":"1850,550","size":"100,100"}
+<<type 150ms>>\
+<span class="drunk">噗通、噗噗通、噗通、噗通、噗噗通……</span>
+
+我用力地感受自己的心跳。
+心跳声宛若一阵此起彼伏的蝉鸣，把我带回那个夏天。
+可我还是没有勇气<b>想起</b>那件事。
+
+[[一根羽毛]]
+[[一枚硬币]]
+
+<</type>>
+
+
+:: 心脏的介绍 {"position":"1025,375","size":"100,100"}
+<<if $HeartFound == true>>
+不规律地跳动。
+<<endif>>
+
+
+:: 手机 {"position":"200,850","size":"100,100"}
+===== 飞鼠OA =====
+<<nobr>><<for _i to 0; _i lt $wechatMessages.length; _i++>>
+    <<capture _i>>
+    <div class="message <<if !$wechatMessages[_i].read>>unread<</if>>">
+    <<set _msgHour = $wechatMessages[_i].hour>>
+    <<set _msgMinute = $wechatMessages[_i].minute>>
+    <<if _msgHour == undefined || _msgMinute == undefined>>
+        <<set _msgHour = 14>>
+        <<set _msgMinute = 0>>
+    <</if>>
+    <div class="message-time"><<formatMessageTime _msgHour _msgMinute>></div>
+    <<if !$wechatMessages[_i].read>>
+        <div class="message-content">
+        未读 <<print $wechatMessages[_i].from>>：<<print $wechatMessages[_i].preview>>
+        <<button "阅读">>
+        <<set  State.variables.wechatMessages[_i].read = true>>
+        <<if State.variables.wechatMessages[_i].digitalKey>>
+            <<set _localMsg = State.variables.wechatMessages[_i]>>
+            <<script>>
+                if (State.temporary.localMsg.digitalKey && window.addDigitalKey) {
+                    window.addDigitalKey(State.temporary.localMsg.digitalKey.room, State.temporary.localMsg.digitalKey.duration);
+                    if (window.showToast && State.variables.toastNotificationsEnabled) {
+                        window.showToast("电子钥匙系统", "已获得" + State.temporary.localMsg.digitalKey.room + "电子钥匙，有效期" + State.temporary.localMsg.digitalKey.duration + "分钟", 4000, "success");
+                    }
+                }
+            <</script>>
+        <</if>>
+        <<script>>
+           window.refreshCellphoneNotifications();
+        <</script>>
+        <<script>>
+            
+            Dialog
+            .create("iphone")
+            .wikiPassage("手机")
+            .open();
+        <</script>>
+        <</button>>
+        </div>
+    <<else>>
+        <div class="message-content">
+        <<print $wechatMessages[_i].from>>：<<print $wechatMessages[_i].content>>
+        </div>
+    <</if>>
+    </div>
+    <</capture>>
+<</for>>
+<</nobr>>
+
+===== 电子钥匙 =====
+<<nobr>><<script>>
+    if (window.cleanExpiredDigitalKeys) {
+        window.cleanExpiredDigitalKeys();
+    }
+<</script>>
+
+<<if $hour >= 19>>
+<em style="color: red;">电子钥匙系统已关闭（19:00后所有电子钥匙强制失效）</em><br><br>
+<</if>>
+
+<<if $digitalKeys.length > 0>>
+你当前拥有的电子钥匙：<br>
+<<for _i to 0; _i lt $digitalKeys.length; _i++>>
+<<capture _i>>
+<<set _key = $digitalKeys[_i]>>
+<<set _keyInfo = null>>
+<<script>>
+    const keyInfo = window.getDigitalKeyInfo && window.getDigitalKeyInfo(State.variables.digitalKeys[State.temporary.i].room);
+    State.temporary.keyInfo = keyInfo;
+<</script>>
+<<if _keyInfo.valid>>
+* <<print _key.room>>电子钥匙 - 剩余<<print _keyInfo.remainingMinutes>>分钟（到<<print _keyInfo.expireHour>>:<<print (_keyInfo.expireMinute < 10 ? "0" : "") + _keyInfo.expireMinute>>过期）<br>
+<<elseif _keyInfo.reason>>
+* <<print _key.room>>电子钥匙 - <<print _keyInfo.reason>><br>
+<<else>>
+* <<print _key.room>>电子钥匙 - 已过期<br>
+<</if>>
+<</capture>>
+<</for>>
+<<else>>
+暂无有效的电子钥匙
+<</if>>
+
+<em style="font-size: 0.8em; color: #666;">注意：所有电子钥匙在19:00后自动失效，无法开启任何会议室。</em>
+<</nobr>>
+
+===== 小红书推送 =====
+<<button "刷新推荐">>
+<<script>>
+    refreshXhsContent();
+    Dialog
+    .create("iphone")
+    .wikiPassage("手机")
+    .open();
+<</script>>
+<</button>>
+
+<<nobr>><<for _i to 0; _i lt $xhsMessages.length; _i++>>
+    <div class="message unread">
+    <<print $xhsMessages[_i].from>>：<<print $xhsMessages[_i].content>>
+    </div>
+<</for>>
+<</nobr>>
+
+
+:: 抽烟 [bbar] {"position":"2900,550","size":"100,100"}
+<<nobr>><<set $CurLocation = "天台">><<passTime 8>><</nobr>>你走到遮雨棚下，从口袋里掏出烟盒。这里确实是个抽烟的好地方，既能避雨又通风良好。地上散落着一些烟蒂，看来确实有不少同事会来这里。
+
+你点燃一支烟，深深地吸了一口。尼古丁的作用让你感到短暂的放松，工作的紧张感稍微缓解了一些。
+
+透过雨帘，你可以看到远处的城市景色。高楼大厦在雨雾中若隐若现，车流在街道上缓缓移动。这种从高处俯视的感觉让你对自己的工作和生活有了不同的视角。
+
+那只鹦鹉依然在天台的另一边活动，偶尔会好奇地看看你这边。
+
+<em>抽烟让你暂时放松，但也消耗了一些时间。</em>
+
+[[再抽一支->再次抽烟]]
+[[掐灭烟头，离开->天台]]
+
+
+:: 捡羽毛 [bbar] {"position":"3050,700","size":"100,100"}
+<<nobr>><<set $CurLocation = "天台">><<passTime 3>><<set $items.push("羽毛")>><</nobr>>你轻轻地捡起了那根羽毛。这是一根完整的鹦鹉羽毛，绿色中带着细微的光泽，质地柔软而有弹性。
+
+你仔细端详着这根羽毛，想起小时候在乡下见过的各种鸟类。这根羽毛虽然普通，但在这个忙碌的都市生活中，它代表着一种难得的自然与宁静。
+
+你决定把这根羽毛收藏起来，也许它会在某个时候提醒你保持内心的平静。
+
+<em>你获得了物品：羽毛</em>
+
+[[继续观察鹦鹉->继续观鸟]]
+[[离开->天台]]
+
+
+:: 放空 [bbar] {"position":"2750,550","size":"100,100"}
+<<nobr>><<set $CurLocation = "天台">><<passTime 12>><</nobr>>你走到天台的边缘，雨水落在脸上。
+
+未来怎么办呢，能在这里生根发芽吗？
+
+你闭上眼。
+
+夏天好像到了。
+
+[[继续放空->继续放空]]
+[[离开->天台]]
+
+
+:: 时间流逝 [widget] {"position":"800,850","size":"100,100"}
+<<nobr>>
+<<widget "passTime">>
+    <<set $minute += $args[0]>>
+    <<if $minute >= 60>>
+        <<set $hour += Math.floor($minute / 60)>>
+        <<set $minute = $minute % 60>>
+    <</if>>        
+    <<script>>        
+    try {           
+        if (window.checkNewWechatMessages) { 
+            window.checkNewWechatMessages();            
+        }        
+    } catch (error) {  
+        console.error("WeChat message check error:", error);   
+    }    
+    <</script>>        
+    <<script>>        
+    try {           
+        if (window.checkTimedEvents) { 
+            window.checkTimedEvents();            
+        }        
+    } catch (error) {  
+        console.error("Timed events check error:", error);   
+    }    
+    <</script>>               
+    <<script>>        
+    try {           
+        if (window.checkWorkstationStatus) { 
+            window.checkWorkstationStatus();            
+        }        
+    } catch (error) {  
+        console.error("Workstation status check error:", error);   
+    }    
+    <</script>>        
+    <<script>>        
+    try {           
+        if (window.cleanExpiredDigitalKeys) { 
+            window.cleanExpiredDigitalKeys();            
+        }        
+    } catch (error) {  
+        console.error("Digital key cleanup error:", error);   
+    }    
+    <</script>>        
+    <<set $rainIntensity = Math.min(1, 0.3 + ($hour - 15 + $minute/60) / 6)>>   
+    <<script>>        
+    try {            
+        window.updateRain(State.variables.rainIntensity);              
+        const intensity = Number(State.variables.rainIntensity) * 0.2; 
+        const volume = parseFloat(Math.min(1, Math.max(0.2, intensity))).toPrecision(4); 
+        console.log("Rain intensity:", State.variables.rainIntensity);            
+        console.log("Volume:", volume);                                    
+        ;         
+        if (!SimpleAudio.isPlaying("rain")) {               
+            SimpleAudio.select("rain").volume(volume);            
+        }                    
+    } catch (error) {            
+        console.error("Rain sound update error:", error);        
+    }    
+    <</script>>
+<</widget>>
+<</nobr>>
+
+
+:: 查看时间 {"position":"650,850","size":"100,100"}
+<<showTime>>
+你看了看手机。距离测评报告截止还有<<print 19 - $hour>>小时<<print (60 - $minute) % 60>>分钟。
+
+[[返回夹层（休息室）->夹层（休息室）]]
+
+
+:: 浏览桌面 [bbar] {"position":"2300,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "工位">><</nobr>>桌面上整齐排列着几个文件夹和快捷方式：
+* 待评测游戏服务器
+* 文档资料
+* 浏览器-季度OKR
+
+[[连接待评测游戏服务器->游戏列表]]
+[[返回->工位]]
+
+
+:: 清理吧台 [bbar] {"position":"2800,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "公共吧台">><<passTime 10>><</nobr>>算了，你来这家公司不到三个月，都不认识饭盒的主人。
+
+[[使用咖啡机->制作咖啡]]
+[[回到走廊->二楼]]
+
+
+:: 游戏列表 [bbar] {"position":"2450,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "工位">><</nobr>>你看到一个新游戏，启动文件名是"夏天过去了一半_Beta.html"，twine制作的。
+
+你看了游戏介绍，只有三个字，“罪与罚”，真装逼。听说一个人做的，类型是独立<strong>文字AVG游戏</strong>，对你而言是个好消息，文字AVG通常容易通关，但你知道，这类游戏通常也卖不好。
+[[启动游戏->开始游戏]]
+<<if !$firstPlayGame>>\
+[[继续游戏->继续游戏]]
+<</if>>\
+[[返回桌面->浏览桌面]]
+
+
+:: 游戏结束_成功 {"position":"1400,850","size":"100,100"}
+<<audio ":all" stop>>
+太好了！你在规定时间内完成了游戏测评。
+
+旁白：经过认真的测试和分析，你对这款游戏有了全面的了解。测评报告很快就能完成了，领导看到后一定会很满意。窗外的雨声渐渐变小，似乎也在为你的成功喝彩。
+
+恭喜通关！
+
+[[重新开始->开始]]
+
+
+:: 游戏结束_正常下班 {"position":"5500,700","size":"100,100"}
+<<script>>SimpleAudio.select("fireworks").volume(0.1).loop(true).play();<</script>>\
+下班时间到了，你离开了公司......
+
+一天的工作结束了，你尽力了。走出公司大门的那一刻，你听到远处传来烟花声和人们的欢呼声，他们在雨中庆祝什么，你不知道。你独自走在回家的路上，望着雨幕后的霓虹灯。
+
+<<if $gameProgress == 0>>
+    你今天完全没有测试游戏，你只是来公司摸鱼的。
+<<elseif $gameProgress == 1>>
+    你的测评刚刚开始。
+<<elseif $gameProgress == 2>>
+    你的测评稍微有了点进度。
+<<elseif $gameProgress == 3>>
+    你的测评快结束了，就差一点。
+<<elseif $gameProgress >=100 && $gameProgress < 300>>
+    恭喜你！你打在最后一刻打通了游戏！
+<<elseif $gameProgress == 300>>
+    【真结局】恭喜你！你打通了游戏，可以从豆豆沙发上醒来了！
+<<else>>
+    【真结局】恭喜你！你打通了游戏，可以从豆豆沙发上醒来了！
+<</if>>
+
+<<if $HeartFound == true>>
+    你找到了自己的心脏，活着真好。 
+<</if>>
+
+Thanks for playing!
+
+
+:: 游戏结束_离开公司 {"position":"5350,850","size":"100,100"}
+<<audio ":all" stop>>
+你离开了公司，走进了雨夜中......
+
+旁白：虽然你成功离开了公司，但测评报告还没有完成。明天你可能会面临领导的询问和工作进度的压力。有时候，逃避并不能解决问题。
+
+Game Over - 离开公司结局
+
+[[重新开始->开始]]
+
+
+:: 游戏结束_超时 {"position":"950,850","size":"100,100"}
+<<audio ":all" stop>>
+已经是晚上7点了......
+
+旁白：时间过得真快，你没能在规定时间内完成游戏测评。领导发来消息说测评报告延期了，这会影响到整个项目的进度。窗外的大雨依然在下，仿佛也在诉说着你的失落。
+
+Game Over - 时间结局
+
+
+:: 电脑开机 [bbar] {"position":"2150,850","size":"100,100"}
+<<if !$computerOn>>
+<<set $computerOn = true>>
+电脑屏幕亮起，桌面是熟悉的大眼睛三花猫壁纸。
+
+你可以：
+[[查看桌面图标->浏览桌面]]
+[[关机->工位]]
+<<else>>
+电脑已经开着了。
+
+你可以：
+[[查看桌面图标->浏览桌面]]
+[[关机->工位]]
+<</if>>
+
+
+:: 硬币的介绍 {"position":"1025,300","size":"100,100"}
+<<if $CoinFound == true>>
+来自另一件囚室屏幕。一直旋转，不会倒下。
+<<endif>>
+
+
+:: 离开公司 [bbar] {"position":"5200,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "一楼大厅">><<passTime 3>><</nobr>>你走向公司大门，准备离开。
+
+<<if $hour >= 19>>
+    <<script>>SimpleAudio.select("fireworks").volume(0.3).loop(true).play();<</script>>\
+    你打算离开公司。
+    
+    [[真的离开->游戏结束_正常下班]]
+    [[回去->一楼大厅]]
+<<else>>
+    就在你即将走出大门时，门禁系统发出了'嘀嘀'的警告声。你的工牌被系统检测到，显示'工作时间内禁止离开'。
+    
+    几秒钟后，你的手机收到了一条来自飞鼠OA系统的消息。
+    
+    <<set $wechatMessages.push({
+        read: false,
+        content: "系统检测到您在工作时间（10:00-19:00）尝试离开公司。根据公司规定，工作时间内员工不得擅自离岗。如有特殊情况需要外出，请提前向直属领导申请并获得批准。此次尝试已被记录在考勤系统中。",
+        from: "飞鼠OA系统",
+        preview: "系统检测到您在工作时间尝试离开公司...",
+        hour: $hour,
+        minute: $minute
+    })>>
+    
+    <<script>>
+        window.refreshCellphoneNotifications();
+        if (window.showToast && State.variables.toastNotificationsEnabled) {
+            window.showToast("飞鼠OA系统", "工作时间内禁止离开公司，此次尝试已被记录", 5000, "warning");
+        }
+    <</script>>
+    
+    看来在工作时间内是无法离开公司的。你只能返回继续工作。
+    
+    [[返回大厅->一楼大厅]]
+<</if>>
+
+
+:: 继续休息 [bbar] {"position":"1700,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "夹层（休息室）">><<passTime 30>><</nobr>>你又睡了一会儿......
+
+[[清醒过来->夹层（休息室）]]
+
+
+:: 继续放空 [bbar] {"position":"2600,550","size":"100,100"}
+<<nobr>><<set $CurLocation = "天台">><<passTime 10>><</nobr>>夏天，皮肤总黏黏的。
+
+冰棒的味道，5毛一根。
+
+雷声，雨声，太阳，彩虹。
+
+骑自行车，乡间小路边，白花，红花，喜欢的人在前面。
+
+院子里那棵樱桃树……
+
+[[离开->天台]]
+
+
+:: 继续游戏 [bbar] {"position":"1250,850","size":"100,100"}
+<<if !$gameStarted>>
+<<set $gameStarted = true>>
+<</if>>
+<<audio ":playing" pause>>
+<<goto 2>>
+
+
+:: 继续观鸟 [bbar] {"position":"3200,700","size":"100,100"}
+<<nobr>><<set $CurLocation = "天台">><<passTime 15>><</nobr>>你继续静静地观察着鹦鹉。它似乎已经习惯了你的存在，开始更加自然地活动。鹦鹉偶尔会走到天台边缘，俯视下面的街道，然后又回到中央继续它的日常活动。
+
+这种观鸟的体验让你感到前所未有的放松。在这个快节奏的工作环境中，能够停下来观察自然生物的行为，是一种难得的享受。
+
+雨声、鹦鹉清脆的叫声，还有远处城市的喧嚣，构成了一幅独特的都市自然画面。你感觉自己的心情变得更加平静，工作的压力也减轻了不少。
+
+<em>观鸟让你感到心情平静，精神状态有所改善。</em>
+
+[[再观察一会儿->继续观鸟]]
+[[离开->天台]]
+
+
+:: 继续黑暗中静坐 [bbar] {"position":"1850,700","size":"100,100"}
+<<nobr>><<set $CurLocation = "夹层（休息室）">><<passTime 10>><</nobr>>你继续在黑暗中坐着，思绪在飘散，自己该往哪儿去呢？
+
+时间似乎失去了意义，你不再是哪个员工，不再是哪个手机的主人，你只是一个在黑暗中思考的人。
+
+[[起身离开->夹层（休息室）]]
+
+
+:: 羽毛的介绍 {"position":"1025,225","size":"100,100"}
+<<if $FeatherFound == true>>
+来源于一只盘旋的小鸟，可为什么鸟的羽翼上出现了红色墨点？
+<<endif>>
+
+
+:: 观鸟 [bbar] {"position":"2900,700","size":"100,100"}
+<<nobr>><<set $CurLocation = "天台">><<passTime 10>><</nobr>>你静静地观察着那只鹦鹉。它有着漂亮的绿色羽毛，翅膀上还有一些蓝色的斑纹。鹦鹉似乎很享受这雨天的宁静，不时地用喙梳理着自己的羽毛。
+
+你发现鹦鹉的动作很有规律，它会先整理翅膀，然后是胸前的羽毛，最后是尾巴。这种专注的样子让你感到一种莫名的平静。
+
+突然，一阵风吹过，鹦鹉抖了抖身体，一根绿色的羽毛飘落在你脚边。
+
+<<if !$items.includes("羽毛")>>
+[[捡起羽毛->捡羽毛]]
+<</if>>
+[[继续观察鹦鹉->继续观鸟]]
+[[离开->天台]]
+
+
+:: 触发事件 [bbar] {"position":"3650,850","size":"100,100"}
+<<nobr>><<script>>
+console.log("currentEvent", setup.currentEvent);
+if (setup.currentEvent && setup.currentEvent.choices) {
+    console.log("currentEvent.choices", setup.currentEvent.choices);
+    console.log("choices length", setup.currentEvent.choices.length);
+} else {
+    console.log("currentEvent or choices not available");
+}
+<</script>><<if setup.currentEvent && setup.currentEvent.choices && setup.currentEvent.choices.length > 0>>
+    <<script>>
+    console.log("trigger event done", setup.currentEvent);
+    <</script>>
+    <<if !setup.currentEvent.isGlobal>>
+        <<set $CurLocation = setup.currentEvent.location>>
+    <</if>>
+    
+    <h3><<print setup.currentEvent.title>></h3>
+    
+    <<print setup.currentEvent.description>>
+    
+    <<if setup.currentEvent.importance == "high">>
+        <div style="color: red; font-weight: bold;">【重要事件】</div>
+    <<elseif setup.currentEvent.importance == "normal">>
+        <div style="color: orange; font-weight: bold;">【一般事件】</div>
+    <<else>>
+        <div style="color: green; font-weight: bold;">【可选事件】</div>
+    <</if>>
+
+    <<script>>
+    console.log("trigger event done ready to choose", setup.currentEvent.importance);
+    <</script>>
+    
+    <br><br>
+    你选择：
+    <br>
+    
+    <<set _choiceCount = setup.currentEvent.choices.length>>
+    <<for _i = 0; _i < _choiceCount; _i++>>
+        <<set _choice = setup.currentEvent.choices[_i]>>
+        <<if _choice && _choice.text && (!setup.currentEvent.completedChoices || !setup.currentEvent.completedChoices.includes(_choice.action))>>
+            <<capture _i, _choice>>
+                <<link _choice.text>>
+                    <<set $eventSystem["eventChoice"] = _choice>>
+                    <<goto "处理事件选择">>
+                <</link>>
+                <br>
+            <</capture>>
+        <</if>>
+    <</for>>
+    <<nobr>>\
+    <<if $CurLocation == "公共吧台">>
+        [[返回二楼->二楼]]
+    <</if>>
+    <</nobr>>
+    
+<<else>>
+    事件加载出错，请返回游戏。
+    <<if setup.currentEvent>>
+        调试信息：事件存在但选择数组有问题
+        <br>事件ID: <<print setup.currentEvent.id || "未知">>
+        <br>选择数组: <<print setup.currentEvent.choices ? "存在" : "不存在">>
+        <br>选择数量: <<print setup.currentEvent.choices ? setup.currentEvent.choices.length : "N/A">>
+    <<else>>
+        调试信息：currentEvent变量不存在
+    <</if>>
+    <br><br>
+    [[返回夹层（休息室）->夹层（休息室）]]
+<</if>>
+<</nobr>>
+
+
+:: 评论游戏 [widget] {"position":"2000,850","size":"100,100"}
+<<widget "reivewGame">>\
+        <<switch $gameProgress>>\
+            <<case 0.5>>\
+                <<type 100ms skipkey "Control">>你愣住了，评测这种游戏，就是你的工作吗……<</type>>
+            <<case 1>>\
+                <<type 100ms skipkey "Control">>你不知道在玩什么……<</type>>
+            <<case 2>>\
+                <<type 100ms skipkey "Control">>这个游戏到底是谁做的……<</type>>
+            <<case 3>>\
+                <<type 100ms skipkey "Control">>游戏世界的口袋是我的口袋……？<</type>>
+            <<case 100>>\
+                <<type 100ms skipkey "Control">>原来天台的鹦鹉就是那只鸟……<</type>>
+            <<case 200>>\
+                <<type 100ms skipkey "Control">>硬币总有两面……<</type>>
+            <<case 300>>\
+                <<type 100ms skipkey "Control">>夏天终于要结束了……<</type>>
+        <</switch>>
+    <</widget>>
+
+
+:: 询问小雨会议内容 [bbar] {"position":"7150,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "二楼">><<passTime 5>><</nobr>>你礼貌地询问小雨刚才会议的内容。
+
+小雨想了想："主要是项目进度汇报，各组都在分享最近的工作成果。"
+
+"领导特别强调了测评组的重要性，说你们的反馈对产品质量很关键。"
+
+"对了，下周有一个重要的项目评估，所以这周大家都在加紧工作。"
+
+<em>通过与小雨的交流，你了解了项目的重要时间节点。</em>
+<<set $gameTestingProgress += 10>>
+
+[[询问美术组的工作进度->询问美术进度]]
+[[感谢并离开->二楼]]
+
+
+:: 询问技术同事项目进度 [bbar] {"position":"6700,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "一楼大厅">><<passTime 5>><</nobr>>你向技术同事询问项目的最新进度。
+
+技术同事很乐意分享信息："今天的站立会议主要讨论了各组的工作状态。美术组的进度很好，程序组那边有一些小问题但不影响大局。"
+
+"对了，领导特别提到了测评组的工作很重要，你们的反馈帮助我们发现了很多问题。"
+
+"下午可能会有一个新版本发布，到时候需要你们测评组及时测试。"
+
+<em>通过与技术同事的交流，你获得了有价值的项目信息。</em>
+<<set $gameTestingProgress += 8>>
+
+[[继续询问技术细节->询问技术细节]]
+[[感谢并离开->一楼大厅]]
+
+
+:: 询问技术细节 [bbar] {"position":"6850,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "一楼大厅">><<passTime 8>><</nobr>>你继续向技术同事询问一些技术方面的细节。
+
+技术同事想了想："主要是服务器稳定性的问题，有时候会出现连接超时。还有就是某些功能在不同设备上的表现不一致。"
+
+"我们正在优化这些问题，但需要测评组帮忙验证修复效果。"
+
+"另外，新的游戏机制可能会在明天上线，到时候需要重点测试用户体验。"
+
+<em>你获得了详细的技术信息，这对你的测评工作很有帮助。</em>
+<<set $gameTestingProgress += 12>>
+
+[[询问具体的测试重点->询问测试重点]]
+[[感谢并离开->一楼大厅]]
+
+
+:: 询问测试重点 [bbar] {"position":"7000,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "一楼大厅">><<passTime 6>><</nobr>>你询问技术同事关于测试重点的建议。
+
+技术同事认真地说："主要关注几个方面：首先是新功能的易用性，看看普通玩家能不能快速上手。"
+
+"然后是性能表现，特别是在低配置设备上的运行情况。"
+
+"最后是游戏平衡性，新机制不能破坏原有的游戏体验。"
+
+"如果你在测试中发现任何问题，可以直接找我或者领导反馈。"
+
+<em>技术同事的建议让你对测评工作有了更清晰的方向。</em>
+<<set $gameTestingProgress += 15>>
+
+[[感谢技术同事的帮助->一楼大厅]]
+
+
+:: 询问美术进度 [bbar] {"position":"7300,850","size":"100,100"}
+<<nobr>><<set $CurLocation = "二楼">><<passTime 6>><</nobr>>你向小雨询问美术组的工作进度。
+
+小雨很高兴地分享："我们这边进度还不错，新的角色设计和场景美术都快完成了。"
+
+"不过有一些UI界面还需要根据测评组的反馈进行调整。"
+
+"你们在测试时如果发现美术方面的问题，比如界面不够清晰或者视觉效果不佳，一定要及时反馈给我们。"
+
+"我们很重视用户体验，希望能做出让玩家满意的视觉效果。"
+
+<em>小雨的话让你意识到测评工作对美术设计的重要影响。</em>
+<<set $gameTestingProgress += 12>>
+
+[[感谢小雨的分享->二楼]]
+
+
+:: 退出 {"position":"2075,900","size":"100,100"}
+<<audio ":paused" play>>
+<<if $gameProgress == 300>>
+<<script>>
+    SimpleAudio.select("rainSong").volume(0.1).play();
+<</script>>
+<</if>>
+<<goto 工位>>
+
+
+:: 通用门外偷听 [bbar] {"position":"7450,850","size":"100,100"}
+<<nobr>><<set $CurLocation = $args[0] || "一楼大厅">><<passTime 8>><</nobr>>你悄悄地贴近门边，仔细倾听里面的声音。
+
+<<set _roomName = $args[1] || "会议室">>
+
+<<if Math.random() > 0.7>>
+    你听到里面传来模糊的谈话声，但由于门的隔音效果，无法清楚地听出具体内容。偶尔能听到几个关键词，但不足以了解完整的情况。
+    
+    <em>虽然没有获得太多有用信息，但至少确认了里面有人在活动。</em>
+    <<set $gameTestingProgress += 2>>
+<<elseif Math.random() > 0.4>>
+    你听到里面传来一些工作相关的讨论声：
+    
+    "这个功能还需要优化..."
+    "用户反馈说..."
+    "我们下午再..."
+    
+    虽然只是片段信息，但让你对团队的工作状态有了一些了解。
+    
+    <em>你获得了一些零散但有用的信息。</em>
+    <<set $gameTestingProgress += 4>>
+<<else>>
+    你贴近门边仔细倾听，但里面似乎很安静，可能没有人在里面，或者隔音效果太好了。
+    
+    <em>没有获得任何有用信息。</em>
+<</if>>
+
+<<if Math.random() > 0.8>>
+    突然，你听到脚步声朝门口走来！你连忙后退几步，假装刚刚路过。
+    
+    <em>差点被发现，还好反应及时。</em>
+<</if>>
+
+<<if $CurLocation == "一楼大厅">>
+    [[悄悄离开->一楼大厅]]
+<<else>>
+    [[悄悄离开->二楼]]
+<</if>>
+
+
+:: 道具-硬币 {"position":"1900,250","size":"100,100"}
+原来是一枚硬币，严丝合缝地嵌在椅腿缝里。
+
+我该怎么拿出来？
+
+
+:: 道具-羽毛 {"position":"1900,125","size":"100,100"}
+一根柔软的白色覆羽飘落下来，好像我本来就拥有它。
+
+这根白色羽毛上，有一滴<<linkreplace红色墨点。>>红色墨点
+<span class="drunk"><span style="font-size: 150%;">砰！</span></span>
+
+我不愿再望向那个红点。
+
+<<link 感受其他的…… 2>>
+<</link>>\
+
+<</linkreplace>>
+
+
+:: 黑暗中静坐 [bbar] {"position":"1700,700","size":"100,100"}
+<<nobr>><<set $CurLocation = "夹层（休息室）">><<passTime 15>><</nobr>>你在黑暗中坐着，世界很小，世界又很大。
+
+<<script>>SimpleAudio.select("fireworks").volume(0.1).loop(true).play();<</script>>\
+远处传来微弱的烟花声，那是属于别人的庆祝，与你无关。
+
+[[继续静坐->继续黑暗中静坐]]
+[[起身离开->夹层（休息室）]]
+
+
+:: StoryScript [script]
+$(document).ready(function() {
+  const rainContainer = $('<div id="rain"></div>');
+  $('body').prepend(rainContainer);
+  
+  const toastContainer = $('<div id="toast-container"></div>');
+  $('body').append(toastContainer);
+  
+  window.updateRain = function(intensity) {
+    const container = $('#rain');
+    container.empty();
+    
+    const dropCount = Math.floor(intensity * 100);
+    const opacity = Math.min(0.8, intensity * 0.4);
+    
+    container.css('opacity', opacity);
+    
+    for (let i = 0; i < dropCount; i++) {
+      const drop = $('<div class="raindrop"></div>');
+      
+
+      const width = 1 + Math.random() * 2;
+      const height = 10 + Math.random() * 20;
+      const left = Math.random() * 100;
+      const duration = 0.5 + Math.random() * 0.5;
+      
+      drop.css({
+        width: width + 'px',
+        height: height + 'px',
+        left: left + '%',
+        animation: `fall ${duration}s linear infinite`,
+        animationDelay: `-${Math.random() * duration}s`
+      });
+      
+      container.append(drop);
+    }
+  };
+  
+
+  window.showToast = function(from, preview, duration = 4000, type = 'info') {
+    const toastId = 'toast-' + Date.now();
+    const toast = $(`
+      <div class="toast ${type}" id="${toastId}">
+        <div class="toast-header">
+          <span class="toast-icon"></span>${from}
+        </div>
+        <div class="toast-content">${preview}</div>
+      </div>
+    `);
+    
+    $('#toast-container').append(toast);
+    
+
+    setTimeout(() => {
+      toast.addClass('show');
+    }, 100);
+    
+    if(!State.variables.gameStarted) {
+        SimpleAudio.select("notify").volume(0.5).play();
+    }
+    
+
+    setTimeout(() => {
+      toast.addClass('hide');
+      setTimeout(() => {
+        toast.remove();
+      }, 300);
+    }, duration);
+    
+    toast.on('click', function() {
+      if (from !== "测试系统") {
+        if (typeof Dialog !== 'undefined') {
+          Dialog.create("iphone").wikiPassage("手机").open();
+        }
+      }
+      
+
+      $(this).addClass('hide');
+      setTimeout(() => {
+        $(this).remove();
+      }, 300);
+    });
+  };
+});
+
+
+window.refreshXhsContent = function() {
+    const highPriority = [...State.variables.xhsHighPriority];
+    const normalPriority = [...State.variables.xhsNormalPriority];
+    const selected = [];
+    
+
+    for (let i = 0; i < 2 && highPriority.length > 0; i++) {
+        if (Math.random() < 0.7) {
+            const index = Math.floor(Math.random() * highPriority.length);
+            selected.push(highPriority.splice(index, 1)[0]);
+        }
+    }
+    
+
+    const remaining = 4 - selected.length;
+    const allRemaining = [...highPriority, ...normalPriority];
+    
+    for (let i = 0; i < remaining && allRemaining.length > 0; i++) {
+        const index = Math.floor(Math.random() * allRemaining.length);
+        selected.push(allRemaining.splice(index, 1)[0]);
+    }
+    
+    State.variables.xhsMessages = selected;
+};
+
+
+window.checkTimedEvents = function() {
+    const currentHour = State.variables.hour;
+    const currentMinute = State.variables.minute;
+    const events = State.variables.timedEvents;
+    let activeEvents = setup.activeLocationEvents;
+    
+    if (!events || !Array.isArray(events)) {
+        console.log("No events array found");
+        return;
+    }
+    
+    if (!activeEvents) {
+        activeEvents = [];
+        setup.activeLocationEvents = activeEvents;
+    }
+    
+    for (let i = 0; i < events.length; i++) {
+        const event = events[i];
+        //console.log("checkTimedEvents", currentHour, currentMinute, event.triggerHour, event.triggerMinute);
+        const shouldActivate = (currentHour > event.triggerHour) || 
+                              (currentHour === event.triggerHour && currentMinute >= event.triggerMinute);
+        
+        //console.log("shouldActivate", shouldActivate, event.active, event.triggered);
+        if (shouldActivate && !event.active && !event.triggered) {
+            if (event.isGlobal) {
+                console.log("Triggering global event immediately:", event.id);
+                event.triggered = true;
+                setup.currentEvent = {
+                    id: event.id,
+                    location: event.location,
+                    title: event.title,
+                    description: event.description,
+                    choices: event.choices,
+                    active: true,
+                    triggered: true,
+                    importance: event.importance,
+                    isGlobal: true,
+                    persistent: event.persistent || false,
+                    completed: event.completed || false,
+                    completedChoices: event.completedChoices || []
+                };
+
+                setTimeout(function() {
+                    Engine.play("触发事件");
+                }, 100);
+                return;
+            }
+
+            const endMinute = event.triggerMinute + event.duration;
+            const endHour = event.triggerHour + Math.floor(endMinute / 60);
+            const actualEndMinute = endMinute % 60;
+            
+            const shouldDeactivate = (currentHour > endHour) || 
+                                   (currentHour === endHour && currentMinute >= actualEndMinute);
+            
+            if (!shouldDeactivate) {
+                event.active = true;
+
+                if (!activeEvents.find(e => e.id === event.id)) {
+                     
+                    const eventCopy = {
+                        id: event.id,
+                        location: event.location,
+                        title: event.title,
+                        description: event.description,
+                        choices: event.choices,
+                        active: true,
+                        triggered: false,
+                        importance: event.importance,
+                        isGlobal: event.isGlobal || false,
+                        persistent: event.persistent || false,
+                        completed: event.completed || false,
+                        completedChoices: event.completedChoices || []
+                    };
+                    activeEvents.push(eventCopy);
+                }
+            }
+        }
+
+        if (event.active) {
+            
+            if (event.persistent) {
+                if (event.completed) {
+                    event.active = false;
+                    const index = activeEvents.findIndex(e => e.id === event.id);
+                    if (index !== -1) {
+                        activeEvents.splice(index, 1);
+                    }
+                }
+            } else {
+                const endMinute = event.triggerMinute + event.duration;
+                const endHour = event.triggerHour + Math.floor(endMinute / 60);
+                const actualEndMinute = endMinute % 60;
+                
+                const shouldDeactivate = (currentHour > endHour) || 
+                                       (currentHour === endHour && currentMinute >= actualEndMinute);
+                
+                if (shouldDeactivate) {
+                    event.active = false;
+                    const index = activeEvents.findIndex(e => e.id === event.id);
+                    if (index !== -1) {
+                        activeEvents.splice(index, 1);
+                    }
+                }
+            }
+        }
+    }
+    
+    setup.activeLocationEvents = activeEvents;
+};
+
+window.triggerLocationEvent = function(location) {
+    var activeEvents = setup.activeLocationEvents;
+    console.log("triggerLocationEvent", location, activeEvents);
+    
+    if (!activeEvents || !Array.isArray(activeEvents)) {
+        console.log("activeEvents is not a valid array");
+        return false;
+    }
+    
+    var locationEvent = activeEvents.find(event => 
+        event && event.location === location && event.active && (!event.triggered || (event.persistent && !event.completed))
+    );
+    
+    if (locationEvent) {
+        console.log("Found event to trigger:", locationEvent);
+        
+        if (!locationEvent.choices || !Array.isArray(locationEvent.choices)) {
+            console.error("Event choices is not a valid array:", locationEvent.choices);
+            return false;
+        }
+        
+        if (locationEvent.choices.length === 0) {
+            console.error("Event has no choices");
+            return false;
+        }
+        
+        for (let i = 0; i < locationEvent.choices.length; i++) {
+            const choice = locationEvent.choices[i];
+            if (!choice || !choice.text || !choice.action) {
+                console.error("Invalid choice at index", i, choice);
+                return false;
+            }
+        }
+        
+        locationEvent.triggered = true;
+        setup.currentEvent = locationEvent;
+        console.log("Event triggered successfully");
+        return true;
+    }
+    
+    console.log("No matching event found for location:", location);
+    return false;
+};
+window.checkNewWechatMessages = function() {
+    const currentHour = State.variables.hour;
+    const currentMinute = State.variables.minute;
+    const pendingMessages = State.variables.pendingWechatMessages;
+    
+    if (!pendingMessages) return;
+    
+    for (let i = pendingMessages.length - 1; i >= 0; i--) {
+        const msg = pendingMessages[i];
+        const shouldTrigger = (currentHour > msg.triggerHour) || 
+                            (currentHour === msg.triggerHour && currentMinute >= msg.triggerMinute);
+        
+        if (shouldTrigger) {
+           
+            const newMessage = {
+                read: false,
+                content: msg.content,
+                from: msg.from,
+                preview: msg.preview,
+                hour: currentHour,
+                minute: currentMinute,
+                digitalKey: msg.digitalKey || null
+            };
+            State.variables.wechatMessages.push(newMessage);
+            
+
+            if (window.showToast && State.variables.toastNotificationsEnabled) {
+                window.showToast(newMessage.from, newMessage.preview);
+            }
+            
+            window.refreshCellphoneNotifications();
+
+            pendingMessages.splice(i, 1);
+        }
+    }
+};
+
+window.refreshCellphoneNotifications = function() {
+    var unread = 0;
+    for (let i = 0; i < State.variables.wechatMessages.length; i++) {
+        if (!State.variables.wechatMessages[i].read) {
+            unread += 1;
+        }
+    }
+    unread += State.variables.xhsMessages.length;
+    State.variables.unreadCount = unread;
+    
+    if (unread > 0) {
+        $('.notification-badge').text(unread).removeClass('hidden');
+    } else {
+        $('.notification-badge').addClass('hidden');
+    }
+};
+
+
+window.checkWorkstationStatus = function() {
+
+    if (!State.variables.workstationMonitoringEnabled) {
+        return;
+    }
+    
+    const currentHour = State.variables.hour;
+    const currentMinute = State.variables.minute;
+    const currentLocation = State.variables.CurLocation;
+    const lastAtWorkstation = State.variables.lastAtWorkstation;
+    const threshold = State.variables.awayFromWorkstationThreshold;
+    
+
+    if (currentLocation === "工位") {
+        State.variables.lastAtWorkstation = {hour: currentHour, minute: currentMinute};
+        State.variables.workstationReminderSent = false;
+        return;
+    }
+    
+
+    const currentTotalMinutes = currentHour * 60 + currentMinute;
+    const lastWorkstationTotalMinutes = lastAtWorkstation.hour * 60 + lastAtWorkstation.minute;
+    const minutesAway = currentTotalMinutes - lastWorkstationTotalMinutes;
+    
+
+    if (minutesAway >= threshold && !State.variables.workstationReminderSent) {
+        let reminderMessages = [];
+        
+        if (minutesAway >= threshold && minutesAway < threshold + 30) {
+            reminderMessages = [
+                {
+                    content: "注意到你离开工位有一段时间了，记得回来继续测评工作哦！",
+                    from: "飞鼠OA系统",
+                    preview: "注意到你离开工位有一段时间了..."
+                },
+                {
+                    content: "工作时间请尽量在工位专心工作，测评任务还需要完成呢！",
+                    from: "飞鼠OA系统", 
+                    preview: "工作时间请尽量在工位专心工作..."
+                }
+            ];
+        } else if (minutesAway >= threshold + 30 && minutesAway < threshold + 60) {
+            reminderMessages = [
+                {
+                    content: "你已经离开工位超过" + Math.floor(minutesAway) + "分钟了，请尽快回到工作岗位！",
+                    from: "飞鼠OA系统",
+                    preview: "你已经离开工位超过" + Math.floor(minutesAway) + "分钟了..."
+                },
+                {
+                    content: "长时间离岗可能影响工作效率，建议立即返回工位继续测评工作。",
+                    from: "飞鼠OA系统",
+                    preview: "长时间离岗可能影响工作效率..."
+                }
+            ];
+        } else {
+            reminderMessages = [
+                {
+                    content: "严重提醒：你已经离开工位超过" + Math.floor(minutesAway) + "分钟！这可能影响项目进度，请立即返回工位！",
+                    from: "飞鼠OA系统",
+                    preview: "严重提醒：你已经离开工位超过" + Math.floor(minutesAway) + "分钟..."
+                },
+                {
+                    content: "系统检测到严重的离岗行为，这将被记录在工作日志中。请立即回到工作岗位！",
+                    from: "飞鼠OA系统",
+                    preview: "系统检测到严重的离岗行为..."
+                }
+            ];
+        }
+        
+        const reminderIndex = Math.min(State.variables.workstationReminderCount, reminderMessages.length - 1);
+        const selectedReminder = reminderMessages[reminderIndex];
+        
+        const newMessage = {
+            read: false,
+            content: selectedReminder.content,
+            from: selectedReminder.from,
+            preview: selectedReminder.preview,
+            hour: currentHour,
+            minute: currentMinute
+        };
+        
+        State.variables.wechatMessages.push(newMessage);
+        
+
+        if (window.showToast && State.variables.toastNotificationsEnabled) {
+            let toastType = 'warning';
+            let toastDuration = 5000;
+            
+            if (minutesAway >= threshold + 60) {
+                toastType = 'error';
+                toastDuration = 6000;
+            } else if (minutesAway >= threshold + 30) {
+                toastType = 'warning';
+                toastDuration = 5000;
+            } else {
+                toastType = 'info';
+                toastDuration = 4000;
+            }
+            
+            window.showToast(newMessage.from, newMessage.preview, toastDuration, toastType);
+        }
+        
+        State.variables.workstationReminderSent = true;
+        State.variables.workstationReminderCount += 1;
+        window.refreshCellphoneNotifications();
+    }
+};
+
+
+window.addDigitalKey = function(room, duration) {
+    const currentHour = State.variables.hour;
+    const currentMinute = State.variables.minute;
+    const expireMinute = currentMinute + duration;
+    const expireHour = currentHour + Math.floor(expireMinute / 60);
+    const actualExpireMinute = expireMinute % 60;
+    
+    const digitalKey = {
+        room: room,
+        expireHour: expireHour,
+        expireMinute: actualExpireMinute,
+        duration: duration,
+        obtainedHour: currentHour,
+        obtainedMinute: currentMinute
+    };
+    
+    State.variables.digitalKeys.push(digitalKey);
+    console.log("Added digital key for", room, "expires at", expireHour + ":" + actualExpireMinute);
+};
+
+window.hasValidDigitalKey = function(room) {
+    const currentHour = State.variables.hour;
+    const currentMinute = State.variables.minute;
+    const currentTotalMinutes = currentHour * 60 + currentMinute;
+    
+    if (currentHour >= 19) {
+        return false;
+    }
+    
+    for (let i = 0; i < State.variables.digitalKeys.length; i++) {
+        const key = State.variables.digitalKeys[i];
+        if (key.room === room) {
+            const keyExpireTotalMinutes = key.expireHour * 60 + key.expireMinute;
+            if (currentTotalMinutes < keyExpireTotalMinutes) {
+                return true;
+            }
+        }
+    }
+    return false;
+};
+
+window.cleanExpiredDigitalKeys = function() {
+    const currentHour = State.variables.hour;
+    const currentMinute = State.variables.minute;
+    const currentTotalMinutes = currentHour * 60 + currentMinute;
+    
+    State.variables.digitalKeys = State.variables.digitalKeys.filter(key => {
+        const keyExpireTotalMinutes = key.expireHour * 60 + key.expireMinute;
+        return currentTotalMinutes < keyExpireTotalMinutes;
+    });
+};
+
+window.getDigitalKeyInfo = function(room) {
+    const currentHour = State.variables.hour;
+    const currentMinute = State.variables.minute;
+    const currentTotalMinutes = currentHour * 60 + currentMinute;
+    
+    if (currentHour >= 19) {
+        return { valid: false, reason: "19:00后电子钥匙系统关闭" };
+    }
+    
+    for (let i = 0; i < State.variables.digitalKeys.length; i++) {
+        const key = State.variables.digitalKeys[i];
+        if (key.room === room) {
+            const keyExpireTotalMinutes = key.expireHour * 60 + key.expireMinute;
+            if (currentTotalMinutes < keyExpireTotalMinutes) {
+                const remainingMinutes = keyExpireTotalMinutes - currentTotalMinutes;
+                return {
+                    valid: true,
+                    remainingMinutes: remainingMinutes,
+                    expireHour: key.expireHour,
+                    expireMinute: key.expireMinute
+                };
+            }
+        }
+    }
+    return { valid: false };
+};
+
+/*! <<shake>> macro set for SugarCube 2.x */
+!function(){"use strict";if("undefined"==typeof version||"undefined"==typeof version.title||"SugarCube"!==version.title||"undefined"==typeof version.major||version.major<2||"undefined"==typeof version.minor||version.minor<5)throw new Error("<<shake>> macro requires SugarCube 2.5.0 or greater, aborting load");Macro.add("shake",{tags:null,handler:function(){var duration=this.args.length>0?this.args[0]:1/0,shakeClass="shake";if(1/0!==duration)try{duration=Math.max(Engine.minDomActionDelay,Util.fromCssTime(duration))}catch(e){return this.error(e.message)}Config.debug&&this.debugView.modes({block:!0});var $wrapper=jQuery(document.createElement("span"));$wrapper.addClass("macro-"+this.name+" "+shakeClass).wiki(this.payload[0].contents).appendTo(this.output),1/0!==duration&&setTimeout(function(){$wrapper.removeClass(shakeClass)},Engine.minDomActionDelay+duration)}}),Macro.add(["shakescreen","shaketarget"],{handler:function(){var $targets,duration,shakeClass;if("shakescreen"===this.name)$targets=jQuery("#passages"),duration=this.args.length>0?this.args[0]:1/0,shakeClass="shake-block";else{if(0===this.args.length)return this.error("no selector specified");if($targets=jQuery(this.args[0]),0===$targets.length)return this.error('no elements matched the selector "'+this.args[0]+'"');duration=this.args.length>1?this.args[1]:1/0,shakeClass="block"===jQuery($targets[0]).css("display")?"shake-block":"shake"}if("stop"===duration)return void $targets.removeClass(shakeClass);if(1/0!==duration)try{duration=Math.max(Engine.minDomActionDelay,Util.fromCssTime(duration))}catch(e){return this.error(e.message)}$targets.addClass(shakeClass),1/0!==duration&&setTimeout(function(){$targets.removeClass(shakeClass)},Engine.minDomActionDelay+duration)}})}();
+
+:: StoryStylesheet [stylesheet]
+#ui-bar {
+	display: none;
+}
+#rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+.raindrop {
+  position: absolute;
+  pointer-events: none;
+  background: linear-gradient(transparent, rgba(200, 200, 200, 0.8));
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-100vh);
+  }
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    color: #333;
+    position: relative;
+    min-height: 40px;
+    overflow: hidden;
+}
+
+.message.unread {
+    background-color: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    color: #333;
+}
+
+.message-time {
+    font-size: 0.75em;
+    color: #888;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 500;
+    height: auto;
+    width: auto;
+    max-width: 80px;
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.message.unread .message-time {
+    background-color: rgba(227, 242, 253, 0.9);
+    color: #1976d2;
+}
+
+.message-content {
+    margin-right: 90px;
+    padding-right: 5px;
+    word-wrap: break-word;
+}
+
+#bottombar .unread-count {
+    background-color: #ff4444;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+
+.message button {
+    float: right;
+    margin-left: 10px;
+    padding: 2px 8px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.message button:hover {
+    background-color: #1976d2;
+}
+
+#phone-button {
+    display: none;
+}
+
+
+.phone-button-container {
+    position: relative;
+    display: inline-block;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff3b30;
+    color: white;
+    border-radius: 50%;
+    min-width: 20px;
+    height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.notification-badge.hidden {
+    display: none;
+}
+
+
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.toast {
+    background-color: #2196f3;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    max-width: 300px;
+    word-wrap: break-word;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast.hide {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.toast-header {
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+    color: #e3f2fd;
+}
+
+.toast-content {
+    font-size: 0.85em;
+    line-height: 1.3;
+}
+
+.toast-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.toast-icon::before {
+    content: "📱";
+    font-size: 14px;
+}
+
+.toast.warning .toast-icon::before {
+    content: "⚠️";
+}
+
+.toast.error .toast-icon::before {
+    content: "🚨";
+}
+
+.toast.success .toast-icon::before {
+    content: "✅";
+}
+
+.toast:hover {
+    background-color: #1976d2;
+    transform: translateX(-5px);
+}
+
+
+.toast.warning {
+    background-color: #ff9800;
+}
+
+.toast.warning:hover {
+    background-color: #f57c00;
+}
+
+.toast.error {
+    background-color: #f44336;
+}
+
+.toast.error:hover {
+    background-color: #d32f2f;
+}
+
+.toast.success {
+    background-color: #4caf50;
+}
+
+.toast.success:hover {
+    background-color: #388e3c;
+}
+.fade-in-text {
+  font-size: 24px;
+  white-space: nowrap;
+}
+
+.fade-in-text span {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  animation-delay: calc(0.1s * var(--i)); /* 延迟逐字出现的时间 */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Horizontal Health Bar - Start */
+.hzbarbkg {  /* default class for all horizontal bar backgrounds */
+	position: relative;
+	height: 5px;
+	width: 100%;
+	background-color: #111;
+	/*background-image: linear-gradient(to right, rgba(68, 68, 68, 0.5), rgba(34, 34, 34, 0.5) 5px), linear-gradient(to bottom, rgba(68, 68, 68, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);*/
+	border-radius: 5px;
+	z-index: 10;
+	visibility: visible;
+}
+.hzbar {  /* default class for all horizontal bars */
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	height: 5px;
+	background-color: transparent;
+	/*background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);*/
+	border-radius: 5px;
+	z-index: 20;
+	transition: width ease 1s, background-color ease 1s;
+}
+/* Horizontal Health Bar - End */
+/* Bottom Bar styling - Start */
+#topbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #333;
+	border-top: 1px solid #444;
+	box-shadow: 0 0 10px 0 #333;
+	z-index: 40;
+}
+#bottombar {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #333;
+	border-top: 1px solid #444;
+	box-shadow: 0 0 10px 0 #333;
+	z-index: 40;
+}
+#bbblock {
+  	line-height:0.2em;
+	margin-left: 20em;
+	margin-right: 2.5em;
+	-o-transition: margin .2s ease-in;
+    transition: margin .2s ease-in;
+}
+#bbtext {
+	text-align: center;
+    max-width: 54em;
+    margin: 0 auto;
+}
+#ui-bar.stowed~#story #bbblock {
+	margin-left: 4.5em;
+}
+@media screen and (max-width: 1136px) {
+	#bbblock {
+		margin-left: 19em;
+		margin-right: 1.5em;
+	}
+	#ui-bar.stowed~#story #bbblock {
+		margin-left: 3.5em;
+	}
+}
+@media screen and (max-width: 768px) {
+	#bbblock {
+		margin-left: 3.5em;
+	}
+}
+/* Bottom Bar styling - End */
+
+/* Drunk Text - Start */
+.drunk {
+	animation: drunkCam 10s infinite alternate;
+	color: white;
+}
+@keyframes drunkCam {
+	0%  { filter: blur(0px); text-shadow: 0 0 0 grey; }
+	20% { filter: blur(1px); text-shadow: 8px 0 0 grey; }
+	24% { filter: blur(0px); text-shadow: 0 0 0 grey; }
+	26% { filter: blur(0px); text-shadow: 0 0 0 grey; }
+	28% { filter: blur(1px); text-shadow: 10px 0 0 grey; }
+	30% { filter: blur(0px); text-shadow: 0 0 0 grey; }
+	60% { filter: blur(1px); text-shadow: 5px 0 0 grey; }
+	62% { filter: blur(0px); text-shadow: 0 0 0 grey; }
+	65% { filter: blur(2px); text-shadow: 8px 0 0 grey; }
+	67% { filter: blur(0px); text-shadow: 0 0 0 grey; }
+	80% { filter: blur(0px); text-shadow: 8px 0 0 grey; }
+	85% { filter: blur(2px); text-shadow: 10px 0 0 grey; }
+	88% { filter: blur(1px); text-shadow: 5px 0 0 grey; }
+	90% { filter: blur(0px); text-shadow: 0 0 0 grey; }
+}
+/* Drunk Text - End */
+
+/* Blur Text - Start */
+.blur {
+  filter: blur(2px); /* 设置模糊的强度，可以调整像素值 */
+  transition: filter 0.8s ease-in-out; /* 添加平滑过渡效果 */
+}
+
+.blur:hover {
+  filter: blur(0); /* 鼠标悬停时清除模糊 */
+}
+/* Blur Text - End */
+
+/* Blur2 Text - Start */
+.blur2 {
+  filter: blur(3px); /* 设置模糊的强度，可以调整像素值 */
+  transition: filter 1s ease-in-out; /* 添加平滑过渡效果 */
+}
+
+.blur2:hover {
+  filter: blur(0); /* 鼠标悬停时清除模糊 */
+}
+/* Blur2 Text - End */
+
+/* Blur3 Text - Start */
+.blur3 {
+  filter: blur(3px); /* 设置模糊的强度，可以调整像素值 */
+  transition: filter 3s ease-in-out; /* 添加平滑过渡效果 */
+}
+
+.blur3:hover {
+  filter: blur(0); /* 鼠标悬停时清除模糊 */
+}
+/* Blur3 Text - End */
